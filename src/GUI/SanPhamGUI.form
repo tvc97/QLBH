@@ -145,7 +145,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfDVT">
       <Properties>
-        <Property name="text" type="java.lang.String" value="c&#xe1;i"/>
+        <Property name="text" type="java.lang.String" value="h&#x1ed9;p"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
