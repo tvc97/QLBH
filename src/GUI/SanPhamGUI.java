@@ -70,6 +70,8 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Đơn Vị Tính");
 
+        tfDVT.setText("cái");
+
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
