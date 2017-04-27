@@ -94,6 +94,9 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Đơn Giá");
 
+        tfDonGia.setText("2");
+        tfDonGia.setToolTipText("");
+
         jLabel6.setText("Số Lượng Có");
 
         tfSoLuongCo.setText("2");

@@ -216,6 +216,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfDonGia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
