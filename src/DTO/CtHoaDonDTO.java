@@ -10,6 +10,90 @@ package DTO;
  * @author SteelWeapon
  */
 public class CtHoaDonDTO {
+
+    /**
+     * @return the MaHD
+     */
+    public int getMaHD() {
+        return MaHD;
+    }
+
+    /**
+     * @param MaHD the MaHD to set
+     */
+    public void setMaHD(int MaHD) {
+        this.MaHD = MaHD;
+    }
+
+    /**
+     * @return the MaSanPham
+     */
+    public int getMaSanPham() {
+        return MaSanPham;
+    }
+
+    /**
+     * @param MaSanPham the MaSanPham to set
+     */
+    public void setMaSanPham(int MaSanPham) {
+        this.MaSanPham = MaSanPham;
+    }
+
+    /**
+     * @return the MaGiamGia
+     */
+    public int getMaGiamGia() {
+        return MaGiamGia;
+    }
+
+    /**
+     * @param MaGiamGia the MaGiamGia to set
+     */
+    public void setMaGiamGia(int MaGiamGia) {
+        this.MaGiamGia = MaGiamGia;
+    }
+
+    /**
+     * @return the SoLuong
+     */
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    /**
+     * @param SoLuong the SoLuong to set
+     */
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
+    }
+
+    /**
+     * @return the DonGia
+     */
+    public int getDonGia() {
+        return DonGia;
+    }
+
+    /**
+     * @param DonGia the DonGia to set
+     */
+    public void setDonGia(int DonGia) {
+        this.DonGia = DonGia;
+    }
+
+    /**
+     * @return the ThanhTien
+     */
+    public int getThanhTien() {
+        return ThanhTien;
+    }
+
+    /**
+     * @param ThanhTien the ThanhTien to set
+     */
+    public void setThanhTien(int ThanhTien) {
+        this.ThanhTien = ThanhTien;
+    }
     private int MaHD;
     private int MaSanPham;
     private int MaGiamGia;

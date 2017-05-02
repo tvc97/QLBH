@@ -70,8 +70,6 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Đơn Vị Tính");
 
-        tfDVT.setText("hộp");
-
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -94,12 +92,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Đơn Giá");
 
-        tfDonGia.setText("2");
-        tfDonGia.setToolTipText("");
-
         jLabel6.setText("Số Lượng Có");
-
-        tfSoLuongCo.setText("2");
 
         jLabel7.setText("Thông tin hàng hóa");
 

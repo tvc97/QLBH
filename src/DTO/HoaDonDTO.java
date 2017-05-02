@@ -11,9 +11,6 @@ package DTO;
  */
 public class HoaDonDTO {
 
- 
-   
-
     /**
      * @return the MaKhachHang
      */
@@ -28,6 +25,25 @@ public class HoaDonDTO {
         this.MaKhachHang = MaKhachHang;
     }
 
+    /**
+     * @return the MaKhachHang
+     */
+    
+
+    /**
+     * @return the MaSP
+     */
+    public int getMaHD() {
+        return MaHD;
+    }
+
+    /**
+     * @param MaSP the MaSP to set
+     */
+    public void setMaHD(int MaHD) {
+        this.MaHD = MaHD;
+    }
+    
     /**
      * @return the MaNV
      */
@@ -69,6 +85,7 @@ public class HoaDonDTO {
     public void setTongTien(int TongTien) {
         this.TongTien = TongTien;
     }
+    private int MaHD;
     private int MaKhachHang;
     private int MaNV;
     private String NgayNhap;
