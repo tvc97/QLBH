@@ -591,7 +591,8 @@ public class HoaDonGUI extends javax.swing.JFrame {
         // SanPhamBUS spb = new SanPhamBUS();
 
         try {
-            ar = spb.getSanPham("tensp = "+"'"+tfTimKiem.getText()+"'" );
+            ar = spb.getSanPham("tensp like "+"'%"+tfTimKiem.getText()+"%'" );
+            
             SanPhamDTO spd = new SanPhamDTO();
             for (int i = 0; i < ar.size(); i++) {
                 Vector row = new Vector();
@@ -721,30 +722,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
-//        try {
-//            ar = hdb.getHoaDon(); //chbd chitiethoadonbus 
-//            HoaDonDTO hd = new HoaDonDTO();
-//            for (int i = 0; i < ar.size(); i++) {
-//                hd = ar.get(i); 
-//                arI.add(hd.getMaHD()); // add tất cả các mã hóa đơn hiện có vào arI
-//            }
-//            for (int i = 0; i < arI.size(); i++) {
-//                String check = arI.get(i); // arI.get(i) lấy từng giá trị gán vào biến check
-//                
-////                if(CHD == check ){
-////                    CHD++; // nếu bằng thì CHD ++ lên
-////                }
-////                if(check - CHD >= 1){ 
-////                    break; // nếu lớn hơn hoặc = 1. Mã hđ ngay vị trí đó rỗng ngắc vòng lập
-////                }
-//            }
-//            //Object t = CHD;
-//            //tfMHD.setText(t.toString()); // gán giá trị vào 
-//            
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(null, ex.getMessage());
-//        }
+
     }  
     /**
      * @param args the command line arguments
