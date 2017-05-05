@@ -65,7 +65,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         tblSPTK = new javax.swing.JTable();
         tfSoLuong = new javax.swing.JTextField();
         btThemHD = new javax.swing.JButton();
-        btGiamHD = new javax.swing.JButton();
+        javax.swing.JButton btGiamHD = new javax.swing.JButton();
         btXoa = new javax.swing.JButton();
         btTaoMoiHoaDon = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -187,7 +187,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(548, Short.MAX_VALUE)
+                .addContainerGap(567, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,9 +199,9 @@ public class HoaDonGUI extends javax.swing.JFrame {
                             .addComponent(tfTongCong, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfGiamGia, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfTienHang, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)
+                        .addGap(95, 95, 95)
                         .addComponent(btThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))
+                        .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
@@ -220,7 +220,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(tfNgayLap, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                        .addContainerGap(40, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane3)
                         .addContainerGap())))
@@ -264,14 +264,14 @@ public class HoaDonGUI extends javax.swing.JFrame {
                     .addComponent(tfMHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(tfMaGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfTienHang))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfTienHang))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,10 +281,10 @@ public class HoaDonGUI extends javax.swing.JFrame {
                             .addComponent(jLabel14)
                             .addComponent(tfTongCong))
                         .addGap(87, 87, 87))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addComponent(btThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(15, 15, 15)
@@ -653,9 +653,10 @@ public class HoaDonGUI extends javax.swing.JFrame {
         int GiamGia=1;
         if(!tfGiamGia.getText().isEmpty()){
             GiamGia = Integer.parseInt(tfGiamGia.getText());
+            SoTienGiam=(TienThanhToan*GiamGia)/100;
+
         }
         Tong= Double.parseDouble(tfTienHang.getText());
-        SoTienGiam=(TienThanhToan*GiamGia)/100;
         Tong= Tong-SoTienGiam;
         Object t = Tong;
         tfTongCong.setText(t.toString());
@@ -663,7 +664,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
     void HienGiamGia() throws Exception{
         int Tong=0;
             if(!tfMaGiamGia.getText().isEmpty()){
-                int MaGiamGia = Integer.parseInt(tfMaGiamGia.getText());
+                String MaGiamGia = tfMaGiamGia.getText();
                 ArrayList<GiamGiaDTO> ar = new ArrayList<GiamGiaDTO>();
                 ar=ggb.getGiamGia("magiamgia="+"'"+MaGiamGia+"'");
                 for (int i = 0; i < ar.size(); i++) {
@@ -759,7 +760,6 @@ public class HoaDonGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGiamHD;
     private javax.swing.JButton btTaoMoiHoaDon;
     private javax.swing.JButton btThanhToan;
     private javax.swing.JButton btThemHD;
