@@ -25,7 +25,7 @@ public class GiamGiaBUS {
         ArrayList<GiamGiaDTO> ar = new ArrayList<GiamGiaDTO>();
         while(result.next()){
             GiamGiaDTO gg = new GiamGiaDTO();
-            gg.setMaGiamGia(result.getInt("magiamgia"));
+            gg.setMaGiamGia(result.getString("magiamgia"));
             gg.setMucGiam(result.getInt("mucgiam"));
             gg.setGhiChu(result.getString("ghichu"));
             gg.setHanDung(result.getString("handung"));

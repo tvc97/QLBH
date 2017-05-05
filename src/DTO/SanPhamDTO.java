@@ -14,14 +14,14 @@ public class SanPhamDTO {
     /**
      * @return the MaSP
      */
-    public int getMaSP() {
+    public String getMaSP() {
         return MaSP;
     }
 
     /**
      * @param MaSP the MaSP to set
      */
-    public void setMaSP(int MaSP) {
+    public void setMaSP(String MaSP) {
         this.MaSP = MaSP;
     }
 
@@ -66,7 +66,7 @@ public class SanPhamDTO {
     public void setSoLuongCo(int SoLuongCo) {
         this.SoLuongCo = SoLuongCo;
     }
-    private int MaSP;
+    private String MaSP;
     private String TenSP;
     private String DonViTinh;
     private int DonGia;

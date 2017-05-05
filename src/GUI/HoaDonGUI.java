@@ -20,6 +20,7 @@ import DTO.GiamGiaDTO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -332,10 +333,10 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private void btThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btThanhToanMouseClicked
         try {
             HoaDonDTO hdd = new HoaDonDTO();
-            hdd.setMaHD(Integer.parseInt(tfMHD.getText()));
-            hdd.setMaNV(1);
+            hdd.setMaHD(tfMHD.getText());
+            hdd.setMaNV("NV01");
             if(!tfKhachHang.getText().isEmpty()){
-                hdd.setMaKhachHang(Integer.parseInt(tfKhachHang.getText()));
+                hdd.setMaKhachHang(tfKhachHang.getText());
             }
             hdd.setNgayNhap(tfNgayLap.getText());
             hdd.setTongTien(Integer.parseInt(tfTongCong.getText()));
@@ -352,8 +353,8 @@ public class HoaDonGUI extends javax.swing.JFrame {
                 int dg=Integer.parseInt(tblSPHD.getValueAt(i,3).toString());
                 int ThanhTien= sl*dg;
                 CtHoaDonDTO hd = new CtHoaDonDTO();
-                hd.setMaHD(Integer.parseInt(tfMHD.getText()));
-                hd.setMaSanPham(Integer.parseInt(tblSPHD.getValueAt(i,0).toString()));
+                hd.setMaHD(tfMHD.getText());
+                hd.setMaSanPham(tblSPHD.getValueAt(i,0).toString());
                 hd.setSoLuong(sl);
                 hd.setDonGia(dg);
                 if(!tfMaGiamGia.getText().isEmpty()){
@@ -419,7 +420,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         }
         for (int i = 0; i < tblSPTK.getRowCount(); i++) {
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tblSPTK.getValueAt(i,0).toString()));
+            spd.setMaSP(tblSPTK.getValueAt(i,0).toString());
             spd.setTenSP(tblSPTK.getValueAt(i,1).toString());
             spd.setDonGia(Integer.parseInt(tblSPTK.getValueAt(i,2).toString()));
             spd.setSoLuongCo(Integer.parseInt(tblSPTK.getValueAt(i,3).toString()));
@@ -494,7 +495,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
         }
         for (int i = 0; i < tblSPTK.getRowCount(); i++) {
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tblSPTK.getValueAt(i,0).toString()));
+            spd.setMaSP(tblSPTK.getValueAt(i,0).toString());
             spd.setTenSP(tblSPTK.getValueAt(i,1).toString());
             spd.setDonGia(Integer.parseInt(tblSPTK.getValueAt(i,2).toString()));
             spd.setSoLuongCo(Integer.parseInt(tblSPTK.getValueAt(i,3).toString()));
@@ -561,7 +562,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
             }
         }
         SanPhamDTO spd = new SanPhamDTO();
-        spd.setMaSP(Integer.parseInt(tblSPTK.getValueAt(cr_tk,0).toString()));
+        spd.setMaSP(tblSPTK.getValueAt(cr_tk,0).toString());
         spd.setTenSP(tblSPTK.getValueAt(cr_tk,1).toString());
         spd.setDonGia(Integer.parseInt(tblSPTK.getValueAt(cr_tk,2).toString()));
         spd.setSoLuongCo(Integer.parseInt(tblSPTK.getValueAt(cr_tk,3).toString()));
@@ -699,31 +700,51 @@ public class HoaDonGUI extends javax.swing.JFrame {
     }
     
     private void getMaHD(){ // Khởi tạo mã hóa đơn
-        ArrayList<Integer> arI= new ArrayList<Integer>();
+        ArrayList<String> arI= new ArrayList<String>();
         ArrayList<HoaDonDTO> ar = null;
-        int CHD=1;
+        Calendar cal = Calendar.getInstance();
+        String prefixMHD = "HD" + cal.get(Calendar.YEAR) + "" + String.format("%1$02d", cal.get(Calendar.MONTH));
+        
         try {
-            ar = hdb.getHoaDon(); //chbd chitiethoadonbus 
-            HoaDonDTO hd = new HoaDonDTO();
-            for (int i = 0; i < ar.size(); i++) {
-                hd = ar.get(i); 
-                arI.add(hd.getMaHD()); // add tất cả các mã hóa đơn hiện có vào arI
+            String MaHDMoiNhat = hdb.MaHDMoiNhat(prefixMHD);
+            if(MaHDMoiNhat == null)
+                MaHDMoiNhat = prefixMHD + "001";
+            else
+            {
+                int MHD;
+                MHD = Integer.parseInt(MaHDMoiNhat.replace(prefixMHD,  ""));
+                MaHDMoiNhat = prefixMHD + String.format("%1$03d", ++MHD);
             }
-            for (int i = 0; i < arI.size(); i++) {
-                int check = arI.get(i); // arI.get(i) lấy từng giá trị gán vào biến check
-                if(CHD == check ){
-                    CHD++; // nếu bằng thì CHD ++ lên
-                }
-                if(check - CHD >= 1){ 
-                    break; // nếu lớn hơn hoặc = 1. Mã hđ ngay vị trí đó rỗng ngắc vòng lập
-                }
-            }
-            Object t = CHD;
-            tfMHD.setText(t.toString()); // gán giá trị vào 
-            
-        } catch (Exception ex) {
+            tfMHD.setText(MaHDMoiNhat);
+        }
+        catch(Exception ex)
+        {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        
+//        try {
+//            ar = hdb.getHoaDon(); //chbd chitiethoadonbus 
+//            HoaDonDTO hd = new HoaDonDTO();
+//            for (int i = 0; i < ar.size(); i++) {
+//                hd = ar.get(i); 
+//                arI.add(hd.getMaHD()); // add tất cả các mã hóa đơn hiện có vào arI
+//            }
+//            for (int i = 0; i < arI.size(); i++) {
+//                String check = arI.get(i); // arI.get(i) lấy từng giá trị gán vào biến check
+//                
+////                if(CHD == check ){
+////                    CHD++; // nếu bằng thì CHD ++ lên
+////                }
+////                if(check - CHD >= 1){ 
+////                    break; // nếu lớn hơn hoặc = 1. Mã hđ ngay vị trí đó rỗng ngắc vòng lập
+////                }
+//            }
+//            //Object t = CHD;
+//            //tfMHD.setText(t.toString()); // gán giá trị vào 
+//            
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, ex.getMessage());
+//        }
     }  
     /**
      * @param args the command line arguments

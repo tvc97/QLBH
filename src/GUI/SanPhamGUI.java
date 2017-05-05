@@ -264,7 +264,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
         try {
           //  SanPhamBUS spb = new SanPhamBUS();
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tfMaSP.getText())); 
+            spd.setMaSP(tfMaSP.getText()); 
             spd.setTenSP(tfTenSP.getText());
    //         spd.setDonViTinh(tfDVT.getText()); 
             spd.setDonGia(Integer.parseInt(tfDonGia.getText())); 
@@ -298,7 +298,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private void btXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btXoaMouseClicked
         try {
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tfMaSP.getText())); 
+            spd.setMaSP(tfMaSP.getText()); 
             spd.setTenSP(tfTenSP.getText());
        //     spd.setDonViTinh(tfDVT.getText()); 
             spd.setDonGia(Integer.parseInt(tfDonGia.getText())); 
@@ -315,7 +315,7 @@ public class SanPhamGUI extends javax.swing.JFrame {
     private void btSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSuaMouseClicked
         try {
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tfMaSP.getText())); 
+            spd.setMaSP(tfMaSP.getText()); 
             spd.setTenSP(tfTenSP.getText());
            // spd.setDonViTinh(tfDVT.getText()); 
             spd.setDonGia(Integer.parseInt(tfDonGia.getText())); 

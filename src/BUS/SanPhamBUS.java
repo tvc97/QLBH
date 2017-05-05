@@ -24,14 +24,14 @@ public  class SanPhamBUS {
         ResultSet result = connect.Select("sanpham", Condition, OrderBy);
         ArrayList<SanPhamDTO> NSP = new ArrayList<SanPhamDTO>();
         while(result.next()){
-        SanPhamDTO sp = new SanPhamDTO();
-        sp.setMaSP(result.getInt("masp"));
-        sp.setTenSP(result.getString("TenSP"));
-     //   sp.setDonViTinh(result.getString("DonViTinh"));
-        sp.setDonGia(result.getInt("DonGia"));
-        sp.setSoLuongCo(result.getInt("SoLuongCo"));
-        NSP.add(sp);
-    }
+            SanPhamDTO sp = new SanPhamDTO();
+            sp.setMaSP(result.getString("masp"));
+            sp.setTenSP(result.getString("TenSP"));
+         //   sp.setDonViTinh(result.getString("DonViTinh"));
+            sp.setDonGia(result.getInt("DonGia"));
+            sp.setSoLuongCo(result.getInt("SoLuongCo"));
+            NSP.add(sp);
+        }
        
         return NSP;
     }
@@ -73,7 +73,7 @@ public  class SanPhamBUS {
     public void Updates(ArrayList<SanPhamDTO> NSP) throws Exception{
         for(SanPhamDTO sp:NSP ){
             this.Update(sp);
-}
+        }
     }
     public void Delete(SanPhamDTO sp) throws Exception{
         this.connect.Delete("sanpham","MaSP="+sp.getMaSP());
@@ -81,7 +81,6 @@ public  class SanPhamBUS {
      public void Deletes(ArrayList<SanPhamDTO> NSP) throws Exception{
         for(SanPhamDTO sp:NSP ){
             this.Delete(sp);
-}
-}
-     
+        }
+    }     
 }

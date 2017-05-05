@@ -258,7 +258,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         try {
             //  SanPhamBUS spb = new SanPhamBUS();
             SanPhamDTO spd = new SanPhamDTO();// tạo spDTO mới
-            spd.setMaSP(Integer.parseInt(tfMaSP.getText()));// Set các giá trị vào
+            spd.setMaSP(tfMaSP.getText());// Set các giá trị vào
             spd.setTenSP(tfTenSP.getText());
             //    spd.setDonViTinh(tfDVT.getText());
             spd.setDonGia(Integer.parseInt(tfDonGia.getText()));
@@ -280,7 +280,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
         try {
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tfMaSP.getText()));
+            spd.setMaSP(tfMaSP.getText());
             spd.setTenSP(tfTenSP.getText());
             //  spd.setDonViTinh(tfDVT.getText());
             spd.setDonGia(Integer.parseInt(tfDonGia.getText()));
@@ -297,7 +297,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         try {
             // tạo sp mới sửa nó vào csdl
             SanPhamDTO spd = new SanPhamDTO();
-            spd.setMaSP(Integer.parseInt(tfMaSP.getText()));
+            spd.setMaSP(tfMaSP.getText());
             spd.setTenSP(tfTenSP.getText());
             //  spd.setDonViTinh(tfDVT.getText());
             spd.setDonGia(Integer.parseInt(tfDonGia.getText()));

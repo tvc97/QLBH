@@ -25,8 +25,8 @@ public class ctHoaDonBUS {
         ArrayList<CtHoaDonDTO> ar = new ArrayList<CtHoaDonDTO>();
         while(result.next()){
             CtHoaDonDTO hd = new CtHoaDonDTO();
-            hd.setMaHD(result.getInt("mahd"));
-            hd.setMaSanPham(result.getInt("masanpham"));
+            hd.setMaHD(result.getString("mahd"));
+            hd.setMaSanPham(result.getString("masanpham"));
             hd.setMaGiamGia(result.getInt("magiamgia"));
             hd.setSoLuong(result.getInt("soluong"));
             hd.setDonGia(result.getInt("dongia"));

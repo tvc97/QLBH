@@ -25,9 +25,9 @@ public class HoaDonBUS {
         ArrayList<HoaDonDTO> ar = new ArrayList<HoaDonDTO>();
         while(result.next()){
             HoaDonDTO hd = new HoaDonDTO();
-            hd.setMaHD(result.getInt("mahd"));
-            hd.setMaKhachHang(result.getInt("makhachhang"));
-            hd.setMaNV(result.getInt("manv"));
+            hd.setMaHD(result.getString("mahd"));
+            hd.setMaKhachHang(result.getString("makhachhang"));
+            hd.setMaNV(result.getString("manv"));
             hd.setNgayNhap(result.getString("ngaynhap"));
             hd.setTongTien(result.getInt("tongtien"));
             ar.add(hd);
@@ -47,7 +47,7 @@ public class HoaDonBUS {
         hm.put("manv", hd.getMaNV());
         hm.put("ngaynhap", hd.getNgayNhap());
         hm.put("tongtien", hd.getTongTien());
-        if(hd.getMaKhachHang()==0){
+        if(hd.getMaKhachHang().equals("0")){
             this.connect.InsertNull("hoadon",hm);
         }
         else{
@@ -80,5 +80,18 @@ public class HoaDonBUS {
         for(HoaDonDTO hd: ar){
             this.Delete(hd);
         }
+    }
+    
+    public String MaHDMoiNhat(String MaHD) throws Exception
+    {
+        ResultSet rs = this.connect.Select("hoadon", "mahd like '" + MaHD + "%'");
+        
+        if(rs.next())
+        {
+            rs.last();
+            return rs.getString(1);
+        }
+        else
+            return null;
     }
 }

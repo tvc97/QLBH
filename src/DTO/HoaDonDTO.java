@@ -14,14 +14,14 @@ public class HoaDonDTO {
     /**
      * @return the MaKhachHang
      */
-    public int getMaKhachHang() {
+    public String getMaKhachHang() {
         return MaKhachHang;
     }
 
     /**
      * @param MaKhachHang the MaKhachHang to set
      */
-    public void setMaKhachHang(int MaKhachHang) {
+    public void setMaKhachHang(String MaKhachHang) {
         this.MaKhachHang = MaKhachHang;
     }
 
@@ -33,28 +33,28 @@ public class HoaDonDTO {
     /**
      * @return the MaSP
      */
-    public int getMaHD() {
+    public String getMaHD() {
         return MaHD;
     }
 
     /**
      * @param MaSP the MaSP to set
      */
-    public void setMaHD(int MaHD) {
+    public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
     }
     
     /**
      * @return the MaNV
      */
-    public int getMaNV() {
+    public String getMaNV() {
         return MaNV;
     }
 
     /**
      * @param MaNV the MaNV to set
      */
-    public void setMaNV(int MaNV) {
+    public void setMaNV(String MaNV) {
         this.MaNV = MaNV;
     }
 
@@ -85,9 +85,9 @@ public class HoaDonDTO {
     public void setTongTien(int TongTien) {
         this.TongTien = TongTien;
     }
-    private int MaHD;
-    private int MaKhachHang;
-    private int MaNV;
+    private String MaHD;
+    private String MaKhachHang;
+    private String MaNV;
     private String NgayNhap;
     private int TongTien;
     

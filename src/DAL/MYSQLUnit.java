@@ -42,6 +42,7 @@ public class MYSQLUnit {
     public ResultSet Select(String TableName) throws Exception{
         return this.Select(TableName, null,null);
     }
+    
     public Boolean Insert(String TableName, HashMap<String,Object> ColumValues) throws Exception{
         StringBuilder qry = new StringBuilder("INSERT INTO "+ TableName); 
         StringBuilder valueInsert  = new StringBuilder();

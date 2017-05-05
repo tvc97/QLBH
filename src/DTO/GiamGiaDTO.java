@@ -14,14 +14,14 @@ public class GiamGiaDTO {
     /**
      * @return the MaGiamGia
      */
-    public int getMaGiamGia() {
+    public String getMaGiamGia() {
         return MaGiamGia;
     }
 
     /**
      * @param MaGiamGia the MaGiamGia to set
      */
-    public void setMaGiamGia(int MaGiamGia) {
+    public void setMaGiamGia(String MaGiamGia) {
         this.MaGiamGia = MaGiamGia;
     }
 
@@ -66,7 +66,7 @@ public class GiamGiaDTO {
     public void setHanDung(String HanDung) {
         this.HanDung = HanDung;
     }
-    private int MaGiamGia;
+    private String MaGiamGia;
     private int MucGiam;
     private String GhiChu;
     private String HanDung;

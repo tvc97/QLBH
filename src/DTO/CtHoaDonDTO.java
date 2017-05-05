@@ -14,28 +14,28 @@ public class CtHoaDonDTO {
     /**
      * @return the MaHD
      */
-    public int getMaHD() {
+    public String getMaHD() {
         return MaHD;
     }
 
     /**
      * @param MaHD the MaHD to set
      */
-    public void setMaHD(int MaHD) {
+    public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
     }
 
     /**
      * @return the MaSanPham
      */
-    public int getMaSanPham() {
+    public String getMaSanPham() {
         return MaSanPham;
     }
 
     /**
      * @param MaSanPham the MaSanPham to set
      */
-    public void setMaSanPham(int MaSanPham) {
+    public void setMaSanPham(String MaSanPham) {
         this.MaSanPham = MaSanPham;
     }
 
@@ -94,8 +94,8 @@ public class CtHoaDonDTO {
     public void setThanhTien(int ThanhTien) {
         this.ThanhTien = ThanhTien;
     }
-    private int MaHD;
-    private int MaSanPham;
+    private String MaHD;
+    private String MaSanPham;
     private int MaGiamGia;
     private int SoLuong;
     private int DonGia;
