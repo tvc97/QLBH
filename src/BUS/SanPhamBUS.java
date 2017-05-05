@@ -68,7 +68,7 @@ public  class SanPhamBUS {
        // hm.put("DonViTinh",sp.getDonViTinh());
         hm.put("DonGia",sp.getDonGia());
         hm.put("SoLuongCo",sp.getSoLuongCo());
-        this.connect.Update("sanpham", hm, "MaSP="+sp.getMaSP());
+        this.connect.Update("sanpham", hm, "MaSP="+"'"+sp.getMaSP()+"'");
     }
     public void Updates(ArrayList<SanPhamDTO> NSP) throws Exception{
         for(SanPhamDTO sp:NSP ){
@@ -76,7 +76,7 @@ public  class SanPhamBUS {
         }
     }
     public void Delete(SanPhamDTO sp) throws Exception{
-        this.connect.Delete("sanpham","MaSP="+sp.getMaSP());
+        this.connect.Delete("sanpham","MaSP="+"'"+sp.getMaSP()+"'");
     }
      public void Deletes(ArrayList<SanPhamDTO> NSP) throws Exception{
         for(SanPhamDTO sp:NSP ){

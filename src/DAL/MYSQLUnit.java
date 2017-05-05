@@ -28,9 +28,10 @@ public class MYSQLUnit {
     }
     private void addCondition(StringBuilder qry,String condition ){
         if(condition!= null){
-           qry.append(" WHERE "+ condition);
+           qry.append(" WHERE "+condition);
         }
     }
+ 
     private void addOrderBy(StringBuilder qry, String orderby){
         if(orderby!= null){
             qry.append(" ORDER BY "+ orderby);
