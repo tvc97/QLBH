@@ -701,8 +701,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
     }
     
     private void getMaHD(){ // Khởi tạo mã hóa đơn
-        ArrayList<String> arI= new ArrayList<String>();
-        ArrayList<HoaDonDTO> ar = null;
+        
         Calendar cal = Calendar.getInstance();
         String prefixMHD = "HD" + cal.get(Calendar.YEAR) + "" + String.format("%1$02d", cal.get(Calendar.MONTH));
         

@@ -10,8 +10,11 @@ package GUI;
  * @author SteelWeapon
  */
 import BUS.SanPhamBUS;
+import DTO.HoaDonDTO;
 import DTO.SanPhamDTO;
+import com.mysql.jdbc.StringUtils;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +28,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private SanPhamBUS spb = new SanPhamBUS();
     public QuanLySanPham() {
         initComponents();
+        getMaHD();
     }
 
     /**
@@ -87,6 +91,11 @@ public class QuanLySanPham extends javax.swing.JFrame {
         btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnThemMouseClicked(evt);
+            }
+        });
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
             }
         });
 
@@ -255,6 +264,14 @@ public class QuanLySanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDocMouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
+        
+        if(StringUtils.isEmptyOrWhitespaceOnly(tfMaSP.getText()) || StringUtils.isEmptyOrWhitespaceOnly(tfTenSP.getText()) || StringUtils.isEmptyOrWhitespaceOnly(tfDonGia.getText()) || StringUtils.isEmptyOrWhitespaceOnly(tfSoLuongCo.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
+            return;
+        }
+        
+        
         try {
             //  SanPhamBUS spb = new SanPhamBUS();
             SanPhamDTO spd = new SanPhamDTO();// tạo spDTO mới
@@ -278,6 +295,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThemMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+        
         try {
             SanPhamDTO spd = new SanPhamDTO();
             spd.setMaSP(tfMaSP.getText());
@@ -320,6 +338,32 @@ public class QuanLySanPham extends javax.swing.JFrame {
         //mnemonic: Phím tắt thoát ctrinh ALT+...
     }//GEN-LAST:event_btnThoatActionPerformed
 
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThemActionPerformed
+    private void getMaHD(){ // Khởi tạo mã hóa đơn
+        
+        Calendar cal = Calendar.getInstance();
+        String prefixMSP = "SP";
+        
+        try {
+            String MaSPMoiNhat = spb.MaSPMoiNhat(prefixMSP);
+            if(MaSPMoiNhat == null)
+                MaSPMoiNhat = prefixMSP + "001";
+            else
+            {
+                int MSP;
+                MSP = Integer.parseInt(MaSPMoiNhat.replace(prefixMSP,  ""));
+                MaSPMoiNhat = prefixMSP + String.format("%1$03d", ++MSP);
+            }
+            tfMaSP.setText(MaSPMoiNhat);
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }  
     /**
      * @param args the command line arguments
      */

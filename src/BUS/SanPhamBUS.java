@@ -82,5 +82,17 @@ public  class SanPhamBUS {
         for(SanPhamDTO sp:NSP ){
             this.Delete(sp);
         }
-    }     
+    }
+    public String MaSPMoiNhat(String MaSP) throws Exception
+    {
+        ResultSet rs = this.connect.Select("sanpham", "masp like '" + MaSP + "%'");
+        
+        if(rs.next())
+        {
+            rs.last();
+            return rs.getString(1);
+        }
+        else
+            return null;
+    }
 }
