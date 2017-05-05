@@ -12,6 +12,7 @@ package GUI;
 import BUS.DangNhapBUS;
 import DTO.DangNhapDTO;
 import GUI.SanPhamGUII;
+import Utils.Sercurity;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class LoginGUI extends javax.swing.JFrame {
@@ -122,12 +123,20 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         ArrayList<DangNhapDTO> ar = null;
+        
+        if(tfTenDangNhap.getText().equals(null) || tfTenDangNhap.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Tên đăng nhập không thể để trống");
+            return;
+        }
+        
         try {
             ar = dnb.getDangNhap("taikhoan="+"'"+tfTenDangNhap.getText()+"'");
             for (int i = 0; i < ar.size(); i++) {
                 DangNhapDTO dn = new DangNhapDTO();
                 dn= ar.get(i);
-                if(dn.getMatKhau().equals(tfMatKhau.getText())){ // phải equals mới chiệu == k chiệu 
+                String md5MatKhau = Sercurity.MD5(tfMatKhau.getText());
+                if(dn.getMatKhau().equals(md5MatKhau)){ // phải equals mới chiệu == k chiệu 
                    this.dispose();
                    SanPhamGUII sp = new SanPhamGUII();
                    sp.setVisible(true); 
@@ -171,11 +180,13 @@ public class LoginGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginGUI().setVisible(true);
+                LoginGUI Login = new LoginGUI();
+                Login.setLocationRelativeTo(null);
+                Login.setVisible(true);
                 
             }
         });

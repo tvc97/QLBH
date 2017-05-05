@@ -7,6 +7,7 @@ package BUS;
 
 import DAL.MYSQLUnit;
 import DTO.DangNhapDTO;
+import Utils.Sercurity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class DangNhapBUS {
         this.connect= DAL.DAL.getDAL();
     }
     public ArrayList<DangNhapDTO> getDangNhap(String Condition, String OrderBy) throws Exception{
-        ResultSet result = connect.Select("taikhoan", Condition, OrderBy);
+        ResultSet result = connect.Select("nhanvien", Condition, OrderBy);
         ArrayList<DangNhapDTO> ar = new ArrayList<DangNhapDTO>();
         while(result.next()){
             DangNhapDTO dn = new DangNhapDTO();
