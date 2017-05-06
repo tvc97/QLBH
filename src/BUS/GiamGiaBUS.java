@@ -25,10 +25,10 @@ public class GiamGiaBUS {
         ArrayList<GiamGiaDTO> ar = new ArrayList<GiamGiaDTO>();
         while(result.next()){
             GiamGiaDTO gg = new GiamGiaDTO();
-            gg.setMaGiamGia(result.getString("magiamgia"));
-            gg.setMucGiam(result.getInt("mucgiam"));
-            gg.setGhiChu(result.getString("ghichu"));
-            gg.setHanDung(result.getString("handung"));
+            gg.setMaGiamGia(result.getString("MaGiamGia"));
+            gg.setMucGiam(result.getInt("MucGiam"));
+            gg.setGhiChu(result.getString("GhiChu"));
+            gg.setHanDung(result.getString("HanDung"));
             ar.add(gg);
         }
         return ar;
@@ -41,15 +41,15 @@ public class GiamGiaBUS {
     }
     public void Insert(GiamGiaDTO gg) throws Exception{
         HashMap<String,Object> hm = new HashMap<String,Object>();
-        hm.put("magiamgia", gg.getMaGiamGia());
-        hm.put("mucgiam", gg.getMucGiam()); 
-        hm.put("ghichu", gg.getGhiChu());
-        hm.put("handung", gg.getHanDung());
+        hm.put("MaGiamGia", gg.getMaGiamGia());
+        hm.put("MucGiam", gg.getMucGiam()); 
+        hm.put("GhiChu", gg.getGhiChu());
+        hm.put("HanDung", gg.getHanDung());
         if(gg.getMucGiam()==0){
-            this.connect.InsertNull("giamgia",hm);
+            this.connect.InsertNull("GiamGia",hm);
         }
         else{
-           this.connect.Insert("giamgia",hm); 
+           this.connect.Insert("GiamGia",hm); 
         }
         
     }
@@ -60,10 +60,11 @@ public class GiamGiaBUS {
     }
     public void Update(GiamGiaDTO gg) throws Exception{
         HashMap<String,Object> hm = new HashMap<String,Object>();
-        hm.put("mucgiam", gg.getMucGiam());
-        hm.put("ghichu", gg.getGhiChu());
-        hm.put("handung", gg.getHanDung());
-        this.connect.Update("giamgia",hm,"magiamgia="+gg.getMaGiamGia());
+        hm.put("MaGiamGia", gg.getMaGiamGia());
+        hm.put("MucGiam", gg.getMucGiam());
+        hm.put("GhiChu", gg.getGhiChu());
+        hm.put("HanDung", gg.getHanDung());
+        this.connect.Update("giamgia",hm,"MaGiamGia="+gg.getMaGiamGia());
     }
     public void Updates(ArrayList<GiamGiaDTO> ar) throws Exception{
         for(GiamGiaDTO gg: ar){
@@ -71,7 +72,7 @@ public class GiamGiaBUS {
         }
     }
     public void Delete(GiamGiaDTO gg) throws Exception{
-        this.connect.Delete("giamgia","magiamgia="+gg.getMaGiamGia());
+        this.connect.Delete("giamgia","MaGiamGia="+gg.getMaGiamGia());
     }
     public void Deletes(ArrayList<GiamGiaDTO> ar) throws Exception{
         for(GiamGiaDTO gg: ar){
