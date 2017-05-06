@@ -48,9 +48,9 @@
                               <Component id="jLabel2" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfMatKhau" min="-2" pref="148" max="-2" attributes="0"/>
-                              <Component id="tfTenDangNhap" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tfTenDangNhap" pref="148" max="32767" attributes="0"/>
+                              <Component id="tfMatKhau" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
@@ -72,16 +72,16 @@
                       <Component id="tfTenDangNhap" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfMatKhau" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfMatKhau" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnDangNhap" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btDangKi" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="75" max="32767" attributes="0"/>
+                  <EmptySpace pref="72" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -102,8 +102,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTenDangNhapActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfMatKhau">
-        </Component>
         <Component class="javax.swing.JButton" name="btnDangNhap">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng Nh&#x1ead;p"/>
@@ -116,6 +114,8 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng K&#xed;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="tfMatKhau">
         </Component>
       </SubComponents>
     </Container>

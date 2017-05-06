@@ -7,6 +7,7 @@ package BUS;
 
 import DAL.MYSQLUnit;
 import DTO.NhanVienDTO;
+import com.mysql.jdbc.StringUtils;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,7 +76,8 @@ public class NhanVienBUS {
         hm.put("MaNV", nv.getMaNV());
         hm.put("TenNV",nv.getTenNV());
         hm.put("TaiKhoan",nv.getTaiKhoan());
-        hm.put("MatKhau",nv.getMatKhau());
+        if(!StringUtils.isEmptyOrWhitespaceOnly(nv.getMatKhau()))
+            hm.put("MatKhau",nv.getMatKhau());
         hm.put("NgaySinh",nv.getNgaySinh());
         hm.put("DiaChi",nv.getDiaChi());
         hm.put("DienThoai",nv.getDienThoai());
