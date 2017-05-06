@@ -33,6 +33,7 @@ public class NhanVienBUS {
             nv.setDiaChi(result.getString("DiaChi"));
             nv.setDienThoai(result.getLong("DienThoai"));
             nv.setChucVu(result.getString("ChucVu"));
+            nv.setRole(result.getString("Role"));
             NVs.add(nv);
         }
        
@@ -61,6 +62,7 @@ public class NhanVienBUS {
         hm.put("DiaChi",nv.getDiaChi());
         hm.put("DienThoai",nv.getDienThoai());
         hm.put("ChucVu",nv.getChucVu());
+        hm.put("Role", nv.getRole());
         this.connect.Insert("nhanvien", hm);
     }
     public void Inserts(ArrayList<NhanVienDTO> NVs) throws Exception{
@@ -78,6 +80,7 @@ public class NhanVienBUS {
         hm.put("DiaChi",nv.getDiaChi());
         hm.put("DienThoai",nv.getDienThoai());
         hm.put("ChucVu",nv.getChucVu());
+        hm.put("Role", nv.getRole());
         this.connect.Update("nhanvien", hm, "MaNV="+"'"+nv.getMaNV()+"'");
     }
     public void Updates(ArrayList<NhanVienDTO> NVs) throws Exception{
