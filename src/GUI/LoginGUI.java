@@ -11,7 +11,9 @@ package GUI;
  */
 import BUS.DangNhapBUS;
 import DTO.DangNhapDTO;
+import DTO.NhanVienDTO;
 import GUI.SanPhamGUII;
+import Utils.Role;
 import Utils.Sercurity;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -122,7 +124,7 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tfTenDangNhapActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        ArrayList<DangNhapDTO> ar = null;
+        ArrayList<NhanVienDTO> ar = null;
         
         if(tfTenDangNhap.getText().equals(null) || tfTenDangNhap.getText().equals(""))
         {
@@ -133,13 +135,18 @@ public class LoginGUI extends javax.swing.JFrame {
         try {
             ar = dnb.getDangNhap("taikhoan="+"'"+tfTenDangNhap.getText()+"'");
             for (int i = 0; i < ar.size(); i++) {
-                DangNhapDTO dn = new DangNhapDTO();
+                NhanVienDTO dn = new NhanVienDTO();
                 dn= ar.get(i);
                 String md5MatKhau = Sercurity.MD5(tfMatKhau.getText());
                 if(dn.getMatKhau().equals(md5MatKhau)){ // phải equals mới chiệu == k chiệu 
                    this.dispose();
-                   HoaDonGUI hd = new HoaDonGUI(tfTenDangNhap.getText());
-                   hd.setVisible(true); 
+                   if(dn.getRole().equals("admin"))
+                       Role.getInstance().Admin();
+                   else
+                       Role.getInstance().NhanVien();
+                   
+                   HoaDonGUI sp = new HoaDonGUI(tfTenDangNhap.getText());
+                   sp.setVisible(true); 
                    break;
                 }
                 else{
@@ -148,6 +155,7 @@ public class LoginGUI extends javax.swing.JFrame {
             }
             
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
         

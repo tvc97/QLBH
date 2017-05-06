@@ -7,6 +7,7 @@ package BUS;
 
 import DAL.MYSQLUnit;
 import DTO.DangNhapDTO;
+import DTO.NhanVienDTO;
 import Utils.Sercurity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -22,21 +23,22 @@ public class DangNhapBUS {
     public DangNhapBUS() {
         this.connect= DAL.DAL.getDAL();
     }
-    public ArrayList<DangNhapDTO> getDangNhap(String Condition, String OrderBy) throws Exception{
+    public ArrayList<NhanVienDTO> getDangNhap(String Condition, String OrderBy) throws Exception{
         ResultSet result = connect.Select("nhanvien", Condition, OrderBy);
-        ArrayList<DangNhapDTO> ar = new ArrayList<DangNhapDTO>();
+        ArrayList<NhanVienDTO> ar = new ArrayList<NhanVienDTO>();
         while(result.next()){
-            DangNhapDTO dn = new DangNhapDTO();
-            dn.setTenDangNhap(result.getString("taikhoan"));
+            NhanVienDTO dn = new NhanVienDTO();
+            dn.setTaiKhoan(result.getString("taikhoan"));
             dn.setMatKhau(result.getString("matkhau"));
+            dn.setRole(result.getString("role"));
             ar.add(dn);
         }
         return ar;
     }
-    public ArrayList<DangNhapDTO> getDangNhap(String Condition) throws Exception{
+    public ArrayList<NhanVienDTO> getDangNhap(String Condition) throws Exception{
          return getDangNhap(Condition, null);
      }
-    public ArrayList<DangNhapDTO> getDangNhap() throws Exception{
+    public ArrayList<NhanVienDTO> getDangNhap() throws Exception{
          return getDangNhap(null);
      }
     public void Insert(DangNhapDTO dn) throws Exception{
