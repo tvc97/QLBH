@@ -138,8 +138,8 @@ public class LoginGUI extends javax.swing.JFrame {
                 String md5MatKhau = Sercurity.MD5(tfMatKhau.getText());
                 if(dn.getMatKhau().equals(md5MatKhau)){ // phải equals mới chiệu == k chiệu 
                    this.dispose();
-                   SanPhamGUII sp = new SanPhamGUII();
-                   sp.setVisible(true); 
+                   HoaDonGUI hd = new HoaDonGUI(tfTenDangNhap.getText());
+                   hd.setVisible(true); 
                    break;
                 }
                 else{
