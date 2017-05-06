@@ -10,8 +10,8 @@ package Utils;
  * @author py
  */
 public class Role {
-    private boolean HOADON_THEM, HOADON_XOA, HOADON_XEM;
-    private boolean NHANVIEN_THEM, NHANVIEN_XOA, NHANVIEN_XEM;
+    private static boolean HOADON_THEM, HOADON_XOA, HOADON_XEM;
+    private static boolean NHANVIEN_THEM, NHANVIEN_XOA, NHANVIEN_XEM;
     private static Role _role;
     
     public static Role getInstance(){

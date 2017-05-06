@@ -122,6 +122,15 @@ public class NhanVienDTO {
     public void setChucVu(String ChucVu) {
         this.ChucVu = ChucVu;
     }
+    
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String Role) {
+        this.Role = Role;
+    }
+
     private String MaNV;
     private String TenNV;
     private String TaiKhoan;
@@ -130,4 +139,6 @@ public class NhanVienDTO {
     private String DiaChi;
     private long DienThoai;
     private String ChucVu;
+    private String Role;
+
 }

@@ -19,14 +19,9 @@ import DTO.CtHoaDonDTO;
 import DTO.GiamGiaDTO;
 import Utils.Role;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class HoaDonGUI extends javax.swing.JFrame {
@@ -36,10 +31,10 @@ public class HoaDonGUI extends javax.swing.JFrame {
      */
     private DefaultTableModel dshd;
     private DefaultTableModel dstk;
-    private SanPhamBUS spb = new SanPhamBUS();
-    private ctHoaDonBUS chdb = new ctHoaDonBUS();
-    private HoaDonBUS hdb = new HoaDonBUS();
-    private GiamGiaBUS ggb = new GiamGiaBUS();
+    private final SanPhamBUS spb = new SanPhamBUS();
+    private final ctHoaDonBUS chdb = new ctHoaDonBUS();
+    private final HoaDonBUS hdb = new HoaDonBUS();
+    private final GiamGiaBUS ggb = new GiamGiaBUS();
     private int cr;
     private int cr_tk;
     private int cr_hd;
@@ -754,10 +749,10 @@ public class HoaDonGUI extends javax.swing.JFrame {
         }
 
     }
-    void KhoiTaoNgay(){
+    final void KhoiTaoNgay(){
         Calendar cal = Calendar.getInstance();
         int month = cal.get(Calendar.MONTH)+1;
-        String.format("%1$02d", cal.get(Calendar.MONTH));
+        //String.format("%1$02d", cal.get(Calendar.MONTH));
         String t =  "" + cal.get(Calendar.YEAR)+"/"+String.format("%1$02d",month)+"/"+String.format("%1$02d",cal.get(Calendar.DATE));
         tfNgayLap.setText(t);
        
