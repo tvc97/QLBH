@@ -40,14 +40,15 @@ public class HoaDonBUS {
     public ArrayList<HoaDonDTO> getHoaDon() throws Exception{
          return getHoaDon(null);
     }
-    public void Insert(HoaDonDTO hd) throws Exception{
+    public void Insert(HoaDonDTO hd) throws Exception{ // chỉ những mục cho phép null mới gọi hàm insertnull thoi
         HashMap<String,Object> hm = new HashMap<String,Object>();
         hm.put("mahd", hd.getMaHD());
         hm.put("makhachhang", hd.getMaKhachHang()); 
         hm.put("manv", hd.getMaNV());
         hm.put("ngaynhap", hd.getNgayNhap());
         hm.put("tongtien", hd.getTongTien());
-        if(hd.getMaKhachHang().equals("0")){
+        System.out.println(hd.getMaKhachHang());
+        if(hd.getMaKhachHang().equals("")){
             this.connect.InsertNull("hoadon",hm);
         }
         else{

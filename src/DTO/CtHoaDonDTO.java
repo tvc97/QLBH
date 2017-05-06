@@ -42,14 +42,14 @@ public class CtHoaDonDTO {
     /**
      * @return the MaGiamGia
      */
-    public int getMaGiamGia() {
+    public String getMaGiamGia() {
         return MaGiamGia;
     }
 
     /**
      * @param MaGiamGia the MaGiamGia to set
      */
-    public void setMaGiamGia(int MaGiamGia) {
+    public void setMaGiamGia(String MaGiamGia) {
         this.MaGiamGia = MaGiamGia;
     }
 
@@ -96,7 +96,7 @@ public class CtHoaDonDTO {
     }
     private String MaHD;
     private String MaSanPham;
-    private int MaGiamGia;
+    private String MaGiamGia;
     private int SoLuong;
     private int DonGia;
     private int ThanhTien;

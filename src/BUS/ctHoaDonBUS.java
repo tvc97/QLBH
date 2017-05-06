@@ -27,7 +27,7 @@ public class ctHoaDonBUS {
             CtHoaDonDTO hd = new CtHoaDonDTO();
             hd.setMaHD(result.getString("mahd"));
             hd.setMaSanPham(result.getString("masanpham"));
-            hd.setMaGiamGia(result.getInt("magiamgia"));
+            hd.setMaGiamGia(result.getString("magiamgia"));
             hd.setSoLuong(result.getInt("soluong"));
             hd.setDonGia(result.getInt("dongia"));
             hd.setThanhTien(result.getInt("thanhtien"));
@@ -49,7 +49,7 @@ public class ctHoaDonBUS {
         hm.put("soluong", hd.getSoLuong());
         hm.put("dongia", hd.getDonGia());
         hm.put("thanhtien", hd.getThanhTien());
-        if(hd.getMaGiamGia()==0){
+        if(hd.getMaGiamGia().equals("")){
           this.connect.InsertNull("cthoadon",hm);  
         }
         else{
