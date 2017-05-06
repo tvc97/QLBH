@@ -145,7 +145,7 @@ public class LoginGUI extends javax.swing.JFrame {
                    else
                        Role.getInstance().NhanVien();
                    
-                   HoaDonGUI sp = new HoaDonGUI();
+                   HoaDonGUI sp = new HoaDonGUI(tfTenDangNhap.getText());
                    sp.setVisible(true); 
                    break;
                 }
