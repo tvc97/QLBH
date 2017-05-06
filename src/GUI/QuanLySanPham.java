@@ -29,6 +29,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
     public QuanLySanPham() {
         initComponents();
         getMaHD();
+        HienThi();
     }
 
     /**
@@ -83,6 +84,11 @@ public class QuanLySanPham extends javax.swing.JFrame {
         btnDoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDocMouseClicked(evt);
+            }
+        });
+        btnDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDocActionPerformed(evt);
             }
         });
 
@@ -231,8 +237,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
         tfDonGia.setText(tblSanPham.getValueAt(n, 2).toString());
         tfSoLuongCo.setText(tblSanPham.getValueAt(n, 3).toString());
     }//GEN-LAST:event_tblSanPhamMouseClicked
-
-    private void btnDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDocMouseClicked
+    
+    private void HienThi()
+    {
         Vector header = new Vector();
         header.add("Mã Sản Phẩm");
         header.add("Tên Sản Phẩm");
@@ -261,6 +268,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
+    }
+    private void btnDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDocMouseClicked
+        HienThi();
     }//GEN-LAST:event_btnDocMouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
@@ -341,6 +351,10 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDocActionPerformed
     private void getMaHD(){ // Khởi tạo mã hóa đơn
         
         Calendar cal = Calendar.getInstance();

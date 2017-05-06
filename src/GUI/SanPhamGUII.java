@@ -916,7 +916,7 @@ public class SanPhamGUII extends javax.swing.JFrame {
                 hd.setSoLuong(sl);
                 hd.setDonGia(dg);
                 if(tblSPHD.getValueAt(i,4)!=null){
-                   hd.setMaGiamGia(Integer.parseInt(tblSPHD.getValueAt(i,4).toString())); 
+                   hd.setMaGiamGia(tblSPHD.getValueAt(i,4).toString()); 
                 }
                 hd.setThanhTien(ThanhTien);
                 arc.add(hd);

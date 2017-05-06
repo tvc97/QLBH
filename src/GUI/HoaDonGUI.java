@@ -17,6 +17,7 @@ import DTO.HoaDonDTO;
 import DTO.SanPhamDTO;
 import DTO.CtHoaDonDTO;
 import DTO.GiamGiaDTO;
+import Utils.Role;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +49,14 @@ public class HoaDonGUI extends javax.swing.JFrame {
         getMaHD();
         KhoiTaoNgay();
      //   HienThiNgay();
+        Role role = Role.getInstance();
+        
+        btTimKiem.enable(role.isHOADON_XEM());
+        btThemHD.enable(role.isHOADON_THEM());
+        btGiamHD.enable(role.isHOADON_THEM());
+        btXoa.enable(role.isHOADON_THEM());
+        btTaoMoiHoaDon.enable(role.isHOADON_THEM());
+        btThanhToan.enable(role.isHOADON_THEM());
     }
 
     /**
