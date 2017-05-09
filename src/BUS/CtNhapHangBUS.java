@@ -84,4 +84,17 @@ public class CtNhapHangBUS {
         for(CtNhapHangDTO nh:ctnh ){
             this.Delete(nh);
         }
+    }
+    public String MaNHMoiNhat(String MaNH) throws Exception
+    {
+        ResultSet rs = this.connect.Select("ctphieunhaphang", "MaPNH like '" + MaNH + "%'");
+        
+        if(rs.next())
+        {
+            rs.last();
+            return rs.getString(1);
+        }
+        else
+            return null;
+    }
 }

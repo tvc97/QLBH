@@ -37,21 +37,24 @@
                           <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnXoa" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="btnHienThi" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="btnThoat" min="-2" pref="100" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="btnThem" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="btnSua" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-              <Component id="btnXoa" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnThoat" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,6 +81,7 @@
                   <Component id="btnThem" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnSua" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnXoa" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="btnHienThi" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnThoat" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -403,6 +407,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnHienThi">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hi&#x1ec3;n th&#x1ecb;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnHienThiMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

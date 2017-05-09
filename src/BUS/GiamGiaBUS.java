@@ -79,4 +79,16 @@ public class GiamGiaBUS {
             this.Delete(gg);
         }
     }
+    public String MaGGMoiNhat(String MaGG) throws Exception
+    {
+        ResultSet rs = this.connect.Select("giamgia", "MaGiamGia like '" + MaGG + "%'");
+        
+        if(rs.next())
+        {
+            rs.last();
+            return rs.getString(1);
+        }
+        else
+            return null;
+    }
 }

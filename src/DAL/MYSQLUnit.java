@@ -6,6 +6,7 @@
 package DAL;
 import java.sql.*;
 import java.util.HashMap;
+import java.util.concurrent.locks.Condition;
 import javax.swing.text.TabExpander;
 /**
  *
@@ -90,5 +91,15 @@ public class MYSQLUnit {
         qry.append(";");
         return this.connect.ExcuteUpdate(qry.toString())>0;
     }
-    
+    public ResultSet RawQuery(StringBuilder query) throws Exception {
+        query.append(";");
+        return this.connect.ExcuteQuery(query.toString());
+    }
+    public ResultSet RawQuery(String qry, String Condition, String OrderBy) throws Exception {
+        StringBuilder query = new StringBuilder(qry);
+        this.addCondition(query, Condition);
+        this.addOrderBy(query, OrderBy);
+        query.append(";");
+        return this.connect.ExcuteQuery(query.toString());
+    }
 }

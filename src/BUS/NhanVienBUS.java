@@ -98,4 +98,16 @@ public class NhanVienBUS {
             this.Delete(nv);
         }
     }
+    public String MaNVMoiNhat(String MaNV) throws Exception
+    {
+        ResultSet rs = this.connect.Select("nhanvien", "MaNV like '" + MaNV + "%'");
+        
+        if(rs.next())
+        {
+            rs.last();
+            return rs.getString(1);
+        }
+        else
+            return null;
+    }
 }
