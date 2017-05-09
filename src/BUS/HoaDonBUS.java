@@ -40,6 +40,13 @@ public class HoaDonBUS {
     public ArrayList<HoaDonDTO> getHoaDon() throws Exception{
          return getHoaDon(null);
     }
+    public HoaDonDTO getNhanVienByMaNV(String id) throws Exception{
+        ArrayList<HoaDonDTO> HDs = this.getHoaDon("MaHD= " + id);
+        if(HDs.size()>0){
+            return HDs.toArray(new HoaDonDTO[HDs.size()])[0];
+        }
+        return null;
+    }
     public void Insert(HoaDonDTO hd) throws Exception{ // chỉ những mục cho phép null mới gọi hàm insertnull thoi
         HashMap<String,Object> hm = new HashMap<String,Object>();
         hm.put("mahd", hd.getMaHD());

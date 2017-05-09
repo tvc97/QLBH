@@ -46,7 +46,7 @@ public class NhanVienBUS {
     public ArrayList<NhanVienDTO>getNhanVien() throws Exception{
         return getNhanVien(null);
     }
-    public NhanVienDTO getNhanVienByMaNV(int id) throws Exception{
+    public NhanVienDTO getNhanVienByMaNV(String id) throws Exception{
         ArrayList<NhanVienDTO> NVs = this.getNhanVien("MaNV= " + id);
         if(NVs.size()>0){
             return NVs.toArray(new NhanVienDTO[NVs.size()])[0];
