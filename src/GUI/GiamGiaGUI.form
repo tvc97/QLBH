@@ -238,7 +238,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtTaiKhoan">
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMatKhau">
+        <Component class="javax.swing.JPasswordField" name="txtMatKhau">
         </Component>
       </SubComponents>
     </Container>

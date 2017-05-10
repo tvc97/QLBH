@@ -53,7 +53,7 @@ public class GiamGiaGUI extends javax.swing.JFrame {
         txtGhiChu = new javax.swing.JTextField();
         txtHanDung = new javax.swing.JTextField();
         txtTaiKhoan = new javax.swing.JTextField();
-        txtMatKhau = new javax.swing.JTextField();
+        txtMatKhau = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableGiamGia = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
@@ -437,7 +437,7 @@ public class GiamGiaGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtGhiChu;
     private javax.swing.JTextField txtHanDung;
     private javax.swing.JTextField txtMaGiamGia;
-    private javax.swing.JTextField txtMatKhau;
+    private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtMucGiam;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables
