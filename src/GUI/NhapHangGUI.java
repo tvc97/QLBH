@@ -292,6 +292,11 @@ public class NhapHangGUI extends javax.swing.JFrame {
         jScrollPane4.setViewportView(TableNhapHang);
 
         btnThem.setText("Thêm");
+        btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThemMouseClicked(evt);
+            }
+        });
 
         btnSua.setText("Sửa");
 
@@ -519,10 +524,10 @@ public class NhapHangGUI extends javax.swing.JFrame {
     private void TableNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableNhapHangMouseClicked
         int n = TableNhapHang.getSelectedRow();
         cr = n;
-        txtMaPhieuNhapHang.setText(TableNhanVien.getValueAt(n, 0).toString());
-        txtMaNhaCungCap.setText(TableNhanVien.getValueAt(n, 1).toString());
-        txtMaNhanVien.setText(TableNhanVien.getValueAt(n, 2).toString());
-        txtNgayLap.setText(TableNhanVien.getValueAt(n, 3).toString());
+        txtMaPhieuNhapHang.setText(TableNhapHang.getValueAt(n, 0).toString());
+        txtMaNhaCungCap.setText(TableNhapHang.getValueAt(n, 1).toString());
+        txtMaNhanVien.setText(TableNhapHang.getValueAt(n, 2).toString());
+        txtNgayLap.setText(TableNhapHang.getValueAt(n, 3).toString());
     }//GEN-LAST:event_TableNhapHangMouseClicked
 
     private void TableNhaCungCapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableNhaCungCapMouseClicked
@@ -543,6 +548,72 @@ public class NhapHangGUI extends javax.swing.JFrame {
         txtMaSanPham.setText(TableSanPham.getValueAt(n, 0).toString());
         txtDonGia.setText(TableSanPham.getValueAt(n, 2).toString());
     }//GEN-LAST:event_TableSanPhamMouseClicked
+
+    private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
+         int tam=0;
+        ArrayList<NhapHangDTO> ar = null;
+        try {
+            ar = nhb.getNhapHang();
+            NhapHangDTO nhd = new NhapHangDTO();
+            for(int i=0; i<ar.size();i++)
+            {
+                nhd = ar.get(i);
+                if(nhd.getMaNCC() == txtMaPhieuNhapHang.getText())
+                {
+                    CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+                    ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
+                    ctnhd.setMaSanPham(txtMaPhieuNhapHang.getText());
+                    ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+                    ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
+                    ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
+                    ctnhb.Insert(ctnhd);
+                    Vector row5 = new Vector();
+                    row5.add(txtMaPhieuNhapHang.getText());
+                    row5.add(txtMaSanPham.getText());
+                    row5.add(Integer.parseInt(txtSoLuong.getText()));
+                    row5.add(Integer.parseInt(txtDonGia.getText()));
+                    row5.add(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
+                    ds5.addRow(row5);
+                    TableChiTietNhapHang.setModel(ds5);
+                    tam = 1;
+                }
+            }
+            if(tam!=1)
+            {
+                nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+                nhd.setMaNCC(txtMaNhaCungCap.getText());
+                nhd.setMaNV(txtMaNhanVien.getText());
+                nhd.setNgayLap(txtNgayLap.getText());
+                nhd.setTongTien(0);
+                nhb.Insert(nhd);
+                Vector row = new Vector();
+                row.add(txtMaPhieuNhapHang.getText());
+                row.add(txtMaNhaCungCap.getText());
+                row.add(txtMaNhanVien.getText());
+                row.add(txtNgayLap.getText());
+                row.add(nhd.getTongTien());
+                ds.addRow(row);
+                TableNhapHang.setModel(ds);
+
+                CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+                ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
+                ctnhd.setMaSanPham(txtMaPhieuNhapHang.getText());
+                ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+                ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
+                ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
+                ctnhb.Insert(ctnhd);
+                Vector row5 = new Vector();
+                row5.add(txtMaPhieuNhapHang.getText());
+                row5.add(txtMaSanPham.getText());
+                row5.add(Integer.parseInt(txtSoLuong.getText()));
+                row5.add(Integer.parseInt(txtDonGia.getText()));
+                row5.add(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
+                ds5.addRow(row5);
+                TableChiTietNhapHang.setModel(ds5);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnThemMouseClicked
 
     /**
      * @param args the command line arguments
