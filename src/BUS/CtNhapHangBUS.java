@@ -49,7 +49,7 @@ public class CtNhapHangBUS {
     public void Insert(CtNhapHangDTO ctnh) throws Exception
     {
         HashMap<String, Object> hm = new HashMap<String,Object>();
-        hm.put("MaPNH", ctnh.getMaSanPham());
+        hm.put("MaPNH", ctnh.getMaPNH());
         hm.put("MaSanPham", ctnh.getMaSanPham());
         hm.put("SoLuong", ctnh.getSoLuong());
         hm.put("DonGia", ctnh.getDonGia());
@@ -64,12 +64,13 @@ public class CtNhapHangBUS {
     public void Update(CtNhapHangDTO ctnh) throws Exception
     {
         HashMap<String, Object> hm = new HashMap<String, Object>();
-        hm.put("MaPNH", ctnh.getMaSanPham());
+        hm.put("MaPNH", ctnh.getMaPNH());
         hm.put("MaSanPham", ctnh.getMaSanPham());
         hm.put("SoLuong", ctnh.getSoLuong());
         hm.put("DonGia", ctnh.getDonGia());
         hm.put("ThanhTien", ctnh.getThanhTien());
-        this.connect.Update("ctphieunhaphang", hm, "MaPNH = " + "'" + ctnh.getMaSanPham() + "'");
+        this.connect.Update("ctphieunhaphang", hm, "MaPNH = " + "'" + ctnh.getMaPNH()+ "' AND MaSanPham = "
+                            + "'" + ctnh.getMaSanPham() + "'");
     }
     public void Updates(ArrayList<CtNhapHangDTO> ctnh) throws Exception{
         for(CtNhapHangDTO nh:ctnh ){
@@ -78,7 +79,8 @@ public class CtNhapHangBUS {
     }
     public void Delete(CtNhapHangDTO ctnh) throws Exception
     {
-        this.connect.Delete("ctphieunhaphang", "MaPNH = " + "'" + ctnh.getMaPNH() + "'");
+        this.connect.Delete("ctphieunhaphang", "MaPNH = " + "'" + ctnh.getMaPNH() + "' AND MaSanPham = "
+                            + "'" + ctnh.getMaSanPham() + "'");
     }
     public void Deletes(ArrayList<CtNhapHangDTO> ctnh) throws Exception{
         for(CtNhapHangDTO nh:ctnh ){

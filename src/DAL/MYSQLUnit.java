@@ -44,7 +44,7 @@ public class MYSQLUnit {
     public ResultSet Select(String TableName) throws Exception{
         return this.Select(TableName, null,null);
     }
-    
+    // hàm Insert này thường là đúng do tất cả GUI còn lại chạy đc
     public Boolean Insert(String TableName, HashMap<String,Object> ColumValues) throws Exception{
         StringBuilder qry = new StringBuilder("INSERT INTO "+ TableName); 
         StringBuilder valueInsert  = new StringBuilder();

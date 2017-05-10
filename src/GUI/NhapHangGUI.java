@@ -17,6 +17,8 @@ import DTO.NhapHangDTO;
 import DTO.SanPhamDTO;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -87,6 +89,8 @@ public class NhapHangGUI extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         TableChiTietNhapHang = new javax.swing.JTable();
         btnSuaChiTiet = new javax.swing.JButton();
+        btnThemChiTiet = new javax.swing.JButton();
+        btnXoaChiTiet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -299,8 +303,18 @@ public class NhapHangGUI extends javax.swing.JFrame {
         });
 
         btnSua.setText("Sửa");
+        btnSua.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSuaMouseClicked(evt);
+            }
+        });
 
         btnXoa.setText("Xoá");
+        btnXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnXoaMouseClicked(evt);
+            }
+        });
 
         btnThoat.setText("Thoát");
 
@@ -322,9 +336,33 @@ public class NhapHangGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TableChiTietNhapHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableChiTietNhapHangMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(TableChiTietNhapHang);
 
         btnSuaChiTiet.setText("Sửa chi tiết");
+        btnSuaChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSuaChiTietMouseClicked(evt);
+            }
+        });
+
+        btnThemChiTiet.setText("Thêm chi tiết");
+        btnThemChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThemChiTietMouseClicked(evt);
+            }
+        });
+
+        btnXoaChiTiet.setText("Xoá chi tiết");
+        btnXoaChiTiet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnXoaChiTietMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -332,57 +370,64 @@ public class NhapHangGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnSuaChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnThemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSua, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSuaChiTiet, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
+                                .addComponent(btnHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnXoaChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 22, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSuaChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXoaChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSuaChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
@@ -522,12 +567,43 @@ public class NhapHangGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHienThiMouseClicked
 
     private void TableNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableNhapHangMouseClicked
+        try{
         int n = TableNhapHang.getSelectedRow();
         cr = n;
         txtMaPhieuNhapHang.setText(TableNhapHang.getValueAt(n, 0).toString());
         txtMaNhaCungCap.setText(TableNhapHang.getValueAt(n, 1).toString());
         txtMaNhanVien.setText(TableNhapHang.getValueAt(n, 2).toString());
         txtNgayLap.setText(TableNhapHang.getValueAt(n, 3).toString());
+        
+        ArrayList<CtNhapHangDTO> ar5 = ctnhb.getCtNhapHang();
+        Vector header5 = new Vector();
+        header5.add("Mã PNH");
+        header5.add("Mã SP");
+        header5.add("Số lượng");
+        header5.add("Đơn giá");
+        header5.add("Thành tiền");
+        DefaultTableModel table5 = new DefaultTableModel(header5, 0);
+        try {
+            ar5 = ctnhb.getCtNhapHang("MaPNH = " + "'" + txtMaPhieuNhapHang.getText() + "'");
+            CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+            for(int i=0; i< ar5.size(); i++)
+            {
+                Vector row = new Vector();
+                ctnhd = ar5.get(i);
+                row.add(ctnhd.getMaPNH());
+                row.add(ctnhd.getMaSanPham());
+                row.add(ctnhd.getSoLuong());
+                row.add(ctnhd.getDonGia());
+                row.add(ctnhd.getThanhTien());
+                table5.addRow(row);
+            }
+            ds5 = table5;
+            TableChiTietNhapHang.setModel(table5);
+        }catch (Exception e) {
+        }
+        }catch (Exception ex) {
+            Logger.getLogger(NhaCungCapGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_TableNhapHangMouseClicked
 
     private void TableNhaCungCapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableNhaCungCapMouseClicked
@@ -550,70 +626,202 @@ public class NhapHangGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TableSanPhamMouseClicked
 
     private void btnThemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseClicked
-         int tam=0;
-        ArrayList<NhapHangDTO> ar = null;
         try {
-            ar = nhb.getNhapHang();
             NhapHangDTO nhd = new NhapHangDTO();
-            for(int i=0; i<ar.size();i++)
-            {
-                nhd = ar.get(i);
-                if(nhd.getMaNCC() == txtMaPhieuNhapHang.getText())
-                {
-                    CtNhapHangDTO ctnhd = new CtNhapHangDTO();
-                    ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
-                    ctnhd.setMaSanPham(txtMaPhieuNhapHang.getText());
-                    ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-                    ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
-                    ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
-                    ctnhb.Insert(ctnhd);
-                    Vector row5 = new Vector();
-                    row5.add(txtMaPhieuNhapHang.getText());
-                    row5.add(txtMaSanPham.getText());
-                    row5.add(Integer.parseInt(txtSoLuong.getText()));
-                    row5.add(Integer.parseInt(txtDonGia.getText()));
-                    row5.add(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
-                    ds5.addRow(row5);
-                    TableChiTietNhapHang.setModel(ds5);
-                    tam = 1;
-                }
-            }
-            if(tam!=1)
-            {
-                nhd.setMaPNH(txtMaPhieuNhapHang.getText());
-                nhd.setMaNCC(txtMaNhaCungCap.getText());
-                nhd.setMaNV(txtMaNhanVien.getText());
-                nhd.setNgayLap(txtNgayLap.getText());
-                nhd.setTongTien(0);
-                nhb.Insert(nhd);
-                Vector row = new Vector();
-                row.add(txtMaPhieuNhapHang.getText());
-                row.add(txtMaNhaCungCap.getText());
-                row.add(txtMaNhanVien.getText());
-                row.add(txtNgayLap.getText());
-                row.add(nhd.getTongTien());
-                ds.addRow(row);
-                TableNhapHang.setModel(ds);
+            nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            nhd.setMaNCC(txtMaNhaCungCap.getText());
+            nhd.setMaNV(txtMaNhanVien.getText());
+            nhd.setNgayLap(txtNgayLap.getText());
+            nhd.setTongTien(0);
+            nhb.Insert(nhd);
+            Vector row = new Vector();
+            row.add(txtMaPhieuNhapHang.getText());
+            row.add(txtMaNhaCungCap.getText());
+            row.add(txtMaNhanVien.getText());
+            row.add(txtNgayLap.getText());
+            row.add(nhd.getTongTien());
+            ds.addRow(row);
+            TableNhapHang.setModel(ds);
+        }
+        catch (Exception e){
+        }
+    }//GEN-LAST:event_btnThemMouseClicked
 
-                CtNhapHangDTO ctnhd = new CtNhapHangDTO();
-                ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
-                ctnhd.setMaSanPham(txtMaPhieuNhapHang.getText());
-                ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-                ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
-                ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
-                ctnhb.Insert(ctnhd);
-                Vector row5 = new Vector();
-                row5.add(txtMaPhieuNhapHang.getText());
-                row5.add(txtMaSanPham.getText());
-                row5.add(Integer.parseInt(txtSoLuong.getText()));
-                row5.add(Integer.parseInt(txtDonGia.getText()));
-                row5.add(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
-                ds5.addRow(row5);
-                TableChiTietNhapHang.setModel(ds5);
+    private void btnThemChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemChiTietMouseClicked
+        try {
+        CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+        ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
+        ctnhd.setMaSanPham(txtMaSanPham.getText());
+        ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
+        ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
+        ctnhb.Insert(ctnhd);
+        Vector row = new Vector();
+        row.add(txtMaPhieuNhapHang.getText());
+        row.add(txtMaSanPham.getText());
+        row.add(Integer.parseInt(txtSoLuong.getText()));
+        row.add(Integer.parseInt(txtDonGia.getText()));
+        row.add(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));
+        ds5.addRow(row);
+        TableChiTietNhapHang.setModel(ds5);
+        
+        
+        int tong=0;
+        ArrayList<CtNhapHangDTO> arctnhd = null;
+        try {
+            arctnhd = ctnhb.getCtNhapHang();
+            for(int i=0; i<arctnhd.size(); i++)
+            {
+                ctnhd = arctnhd.get(i);
+                if(ctnhd.getMaPNH().equals(txtMaPhieuNhapHang.getText()))
+                    tong = tong + ctnhd.getThanhTien();
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_btnThemMouseClicked
+        NhapHangDTO nhd = new NhapHangDTO();
+        nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+        nhd.setMaNCC(txtMaNhaCungCap.getText());
+        nhd.setMaNV(txtMaNhanVien.getText());
+        nhd.setNgayLap(txtNgayLap.getText());
+        nhd.setTongTien(tong);
+        nhb.Update(nhd);
+        ds.setValueAt(txtMaPhieuNhapHang.getText(), cr, 0);
+        ds.setValueAt(txtMaNhaCungCap.getText(), cr, 1);
+        ds.setValueAt(txtMaNhanVien.getText(), cr, 2);
+        ds.setValueAt(txtNgayLap.getText(), cr, 3);
+        ds.setValueAt(tong, cr, 4);
+        TableNhapHang.setModel(ds);
+        }
+        catch (Exception e){
+        }
+    }//GEN-LAST:event_btnThemChiTietMouseClicked
+
+    private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
+        try {
+            NhapHangDTO nhd = new NhapHangDTO();
+            nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            nhd.setMaNCC(txtMaNhaCungCap.getText());
+            nhd.setMaNV(txtMaNhanVien.getText());
+            nhd.setNgayLap(txtNgayLap.getText());
+            nhb.Update(nhd);
+            ds.setValueAt(txtMaPhieuNhapHang.getText(), cr, 0);
+            ds.setValueAt(txtMaNhaCungCap.getText(), cr, 1);
+            ds.setValueAt(txtMaNhanVien.getText(), cr, 2);
+            ds.setValueAt(txtNgayLap.getText(), cr, 3);
+            TableNhapHang.setModel(ds);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnSuaMouseClicked
+
+    private void btnSuaChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaChiTietMouseClicked
+        try {
+            CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+            ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            ctnhd.setMaSanPham(txtMaSanPham.getText());
+            ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
+            ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));        
+            ctnhb.Update(ctnhd);
+            ds5.setValueAt(txtMaPhieuNhapHang.getText(), cr5, 0);
+            ds5.setValueAt(txtMaSanPham.getText(), cr5, 1);
+            ds5.setValueAt(txtSoLuong.getText(), cr5, 2);
+            TableChiTietNhapHang.setModel(ds5);
+            
+            int tong=0;
+            ArrayList<CtNhapHangDTO> arctnhd = null;
+            try {
+                arctnhd = ctnhb.getCtNhapHang();
+                for(int i=0; i<arctnhd.size(); i++)
+                {
+                    ctnhd = arctnhd.get(i);
+                    if(ctnhd.getMaPNH().equals(txtMaPhieuNhapHang.getText()))
+                        tong = tong + ctnhd.getThanhTien();
+                }
+            } catch (Exception e) {
+            }
+            NhapHangDTO nhd = new NhapHangDTO();
+            nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            nhd.setMaNCC(txtMaNhaCungCap.getText());
+            nhd.setMaNV(txtMaNhanVien.getText());
+            nhd.setNgayLap(txtNgayLap.getText());
+            nhd.setTongTien(tong);
+            nhb.Update(nhd);
+            ds.setValueAt(txtMaPhieuNhapHang.getText(), cr, 0);
+            ds.setValueAt(txtMaNhaCungCap.getText(), cr, 1);
+            ds.setValueAt(txtMaNhanVien.getText(), cr, 2);
+            ds.setValueAt(txtNgayLap.getText(), cr, 3);
+            ds.setValueAt(tong, cr, 4);
+            TableNhapHang.setModel(ds);
+        }
+        catch (Exception e){
+        }
+    }//GEN-LAST:event_btnSuaChiTietMouseClicked
+
+    private void TableChiTietNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableChiTietNhapHangMouseClicked
+        int n = TableChiTietNhapHang.getSelectedRow();
+        cr5 = n;
+        txtMaSanPham.setText(TableChiTietNhapHang.getValueAt(n, 1).toString());
+        txtSoLuong.setText(TableChiTietNhapHang.getValueAt(n, 2).toString());
+        txtDonGia.setText(TableChiTietNhapHang.getValueAt(n, 3).toString());
+    }//GEN-LAST:event_TableChiTietNhapHangMouseClicked
+
+    private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
+        try {
+            NhapHangDTO nhd = new NhapHangDTO();
+            nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            nhd.setMaNCC(txtMaNhaCungCap.getText());
+            nhd.setMaNV(txtMaNhanVien.getText());
+            nhd.setNgayLap(txtNgayLap.getText());
+            nhb.Delete(nhd);
+            ds.removeRow(cr);
+            TableNhapHang.setModel(ds);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnXoaMouseClicked
+
+    private void btnXoaChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaChiTietMouseClicked
+        try {
+            CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+            ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            ctnhd.setMaSanPham(txtMaSanPham.getText());
+            ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+            ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
+            ctnhd.setThanhTien(Integer.parseInt(txtSoLuong.getText())*Integer.parseInt(txtDonGia.getText()));
+            ctnhb.Delete(ctnhd);
+            ds5.removeRow(cr5);
+            TableChiTietNhapHang.setModel(ds5);
+        } catch (Exception e) {
+        }
+        try {
+            CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+            int tong=0;
+            ArrayList<CtNhapHangDTO> arctnhd = null;
+            try {
+                arctnhd = ctnhb.getCtNhapHang();
+                for(int i=0; i<arctnhd.size(); i++)
+                {
+                    ctnhd = arctnhd.get(i);
+                    if(ctnhd.getMaPNH().equals(txtMaPhieuNhapHang.getText()))
+                        tong = tong + ctnhd.getThanhTien();
+                }
+            } catch (Exception e) {
+            }
+            NhapHangDTO nhd = new NhapHangDTO();
+            nhd.setMaPNH(txtMaPhieuNhapHang.getText());
+            nhd.setMaNCC(txtMaNhaCungCap.getText());
+            nhd.setMaNV(txtMaNhanVien.getText());
+            nhd.setNgayLap(txtNgayLap.getText());
+            nhd.setTongTien(tong);
+            nhb.Update(nhd);
+            ds.setValueAt(txtMaPhieuNhapHang.getText(), cr, 0);
+            ds.setValueAt(txtMaNhaCungCap.getText(), cr, 1);
+            ds.setValueAt(txtMaNhanVien.getText(), cr, 2);
+            ds.setValueAt(txtNgayLap.getText(), cr, 3);
+            ds.setValueAt(tong, cr, 4);
+            TableNhapHang.setModel(ds);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_btnXoaChiTietMouseClicked
 
     /**
      * @param args the command line arguments
@@ -669,8 +877,10 @@ public class NhapHangGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnSuaChiTiet;
     private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnThemChiTiet;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnXoaChiTiet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

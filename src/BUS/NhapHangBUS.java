@@ -78,6 +78,7 @@ public class NhapHangBUS {
         hm.put("MaNCC", nh.getMaNCC());
         hm.put("MaNV", nh.getMaNV());
         hm.put("NgayLap", nh.getNgayLap());
+        hm.put("TongTien", nh.getTongTien());
         this.connect.Update("phieunhaphang", hm, "MaPNH = " + "'" +  nh.getMaPNH() + "'");
     }
     public void Updates(ArrayList<NhapHangDTO> NHs) throws Exception
