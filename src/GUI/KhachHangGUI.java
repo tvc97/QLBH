@@ -7,6 +7,7 @@ package GUI;
 
 import BUS.KhachHangBUS;
 import DTO.KhachHangDTO;
+import com.mysql.jdbc.StringUtils;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -20,6 +21,8 @@ public class KhachHangGUI extends javax.swing.JFrame {
     private DefaultTableModel ds;
     private KhachHangBUS khb =new KhachHangBUS();
     private int cr;
+    private String Condition;
+    private String OrderBy;
     
     
     /**
@@ -58,8 +61,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
         btnSuaKH = new javax.swing.JButton();
         btnXoaKH = new javax.swing.JButton();
         btnHienThiKH = new javax.swing.JButton();
+        btnTimKiemKH = new javax.swing.JButton();
+        txtTimKiemKH = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(java.awt.Color.pink);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -139,6 +145,13 @@ public class KhachHangGUI extends javax.swing.JFrame {
             }
         });
 
+        btnTimKiemKH.setText("Tìm kiếm");
+        btnTimKiemKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemKHActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,9 +187,15 @@ public class KhachHangGUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnHienThiKH, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(55, 55, 55)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 74, Short.MAX_VALUE))
+                .addGap(0, 73, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addComponent(btnTimKiemKH)
+                .addGap(18, 18, 18)
+                .addComponent(txtTimKiemKH, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +234,11 @@ public class KhachHangGUI extends javax.swing.JFrame {
                         .addComponent(btnThemKH, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTimKiemKH)
+                    .addComponent(txtTimKiemKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
 
         pack();
@@ -295,10 +318,9 @@ public class KhachHangGUI extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnXoaKHMouseClicked
-
-    private void btnHienThiKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHienThiKHMouseClicked
-        // TODO add your handling code here:
-        Vector header = new Vector();
+    private void HienThi()
+{
+       Vector header = new Vector();
         header.add("Mã khách hàng");
         header.add("Tên khách hàng");
         header.add("Địa chỉ");
@@ -308,12 +330,12 @@ public class KhachHangGUI extends javax.swing.JFrame {
         DefaultTableModel table=new DefaultTableModel(header, 0);
         ArrayList<KhachHangDTO> ar= null;
       try{
-            ar=khb.getKhachHang();
+            ar=khb.getKhachHang(Condition,OrderBy);
             KhachHangDTO khd=new KhachHangDTO();
             for(int i=0;i<ar.size();i++)
             {
                 Vector row=new Vector();
-                khd= ar.get(i);
+                khd=ar.get(i);
                 row.add(khd.getMaKH());
                 row.add(khd.getTenKH());
                 row.add(khd.getDiaChi());
@@ -327,6 +349,10 @@ public class KhachHangGUI extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
+}
+    private void btnHienThiKHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHienThiKHMouseClicked
+        // TODO add your handling code here:
+        HienThi();
     }//GEN-LAST:event_btnHienThiKHMouseClicked
 
     private void TableKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableKhachHangMouseClicked
@@ -341,6 +367,24 @@ public class KhachHangGUI extends javax.swing.JFrame {
         txtSDT.setText(TableKhachHang.getValueAt(n, 4).toString());
         txtTongHoaDon.setText(TableKhachHang.getValueAt(n, 5).toString());
     }//GEN-LAST:event_TableKhachHangMouseClicked
+        private void TimKiemKH()
+    {
+        if(!StringUtils.isNullOrEmpty(txtTimKiemKH.getText())&& !StringUtils.isEmptyOrWhitespaceOnly(txtTimKiemKH.getText()))
+                {
+                    Condition = "KhachHang.MaKH LIKE '%" +txtTimKiemKH.getText()+"%'";
+                        HienThi();
+                }
+        else
+        {
+            Condition=null;
+            HienThi();
+        }
+        
+    }
+    private void btnTimKiemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemKHActionPerformed
+        // TODO add your handling code here:
+        TimKiemKH();
+    }//GEN-LAST:event_btnTimKiemKHActionPerformed
 
 
     
@@ -389,6 +433,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnHienThiKH;
     private javax.swing.JButton btnSuaKH;
     private javax.swing.JButton btnThemKH;
+    private javax.swing.JButton btnTimKiemKH;
     private javax.swing.JButton btnXoaKH;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -397,6 +442,7 @@ public class KhachHangGUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTenKH;
+    private javax.swing.JTextField txtTimKiemKH;
     private javax.swing.JTextField txtTongHoaDon;
     // End of variables declaration//GEN-END:variables
 }
