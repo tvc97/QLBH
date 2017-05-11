@@ -694,6 +694,26 @@ public class NhapHangGUI extends javax.swing.JFrame {
         }
         catch (Exception e){
         }
+        
+        int soluong=Integer.parseInt(txtSoLuong.getText());
+        SanPhamDTO spd = new SanPhamDTO();
+        ArrayList<SanPhamDTO> arspd = null;
+        try {
+            arspd = spb.getSanPham();
+            for(int i=0; i<arspd.size();i++)
+            {
+                spd = arspd.get(i);
+                if(spd.getMaSP().equals(txtMaSanPham.getText()))
+                {
+                    int tam;
+                    tam = spd.getSoLuongCo()+soluong;
+                    spd.setSoLuongCo(spd.getSoLuongCo()+soluong);
+                    spb.UpdateGia(spd);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnThemChiTietMouseClicked
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked

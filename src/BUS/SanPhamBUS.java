@@ -70,6 +70,12 @@ public  class SanPhamBUS {
         hm.put("SoLuongCo",sp.getSoLuongCo());
         this.connect.Update("sanpham", hm, "MaSP="+"'"+sp.getMaSP()+"'");
     }
+    public void UpdateGia(SanPhamDTO sp) throws Exception
+    {
+        HashMap<String,Object> hm = new HashMap<String, Object>();
+        hm.put("SoLuongCo", sp.getSoLuongCo());
+        this.connect.Update("sanpham", hm, "MaSP="+"'"+sp.getMaSP()+"'");
+    }
     public void Updates(ArrayList<SanPhamDTO> NSP) throws Exception{
         for(SanPhamDTO sp:NSP ){
             this.Update(sp);
