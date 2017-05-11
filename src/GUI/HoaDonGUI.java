@@ -12,6 +12,7 @@ package GUI;
 import BUS.GiamGiaBUS;
 import BUS.HoaDonBUS;
 import BUS.NhanVienBUS;
+import BUS.ReportBUS;
 import BUS.SanPhamBUS;
 import BUS.ctHoaDonBUS;
 import DTO.HoaDonDTO;
@@ -20,10 +21,15 @@ import DTO.CtHoaDonDTO;
 import DTO.GiamGiaDTO;
 import DTO.NhanVienDTO;
 import Utils.Role;
+import com.mysql.jdbc.StringUtils;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class HoaDonGUI extends javax.swing.JFrame {
@@ -45,6 +51,7 @@ public class HoaDonGUI extends javax.swing.JFrame {
     private final HoaDonBUS hdb = new HoaDonBUS();
     private final GiamGiaBUS ggb = new GiamGiaBUS();
     private final NhanVienBUS nvb = new NhanVienBUS();
+    private final ReportBUS rpb = new ReportBUS();
 //>>>>>>> origin/master
     private int cr;
     private int cr_tk;
@@ -242,6 +249,11 @@ public class HoaDonGUI extends javax.swing.JFrame {
         });
 
         btInHD.setText("In hóa đơn");
+        btInHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInHDActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Số lượng");
 
@@ -730,6 +742,19 @@ public class HoaDonGUI extends javax.swing.JFrame {
         }
         HienTongThanhTien(); 
     }//GEN-LAST:event_btGiamHDMouseClicked
+
+    private void btInHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInHDActionPerformed
+        System.out.println(ma_hd);
+        if(StringUtils.isEmptyOrWhitespaceOnly(ma_hd) || StringUtils.isNullOrEmpty(ma_hd))
+            return;
+        String path = HoaDonGUI.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        try {
+            path = URLDecoder.decode(path, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(HoaDonGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        rpb.ReportHD(ma_hd, path);
+    }//GEN-LAST:event_btInHDActionPerformed
       private void TaoBangTimKiem(){
         Vector header = new Vector();
         header.add("Mã Sản Phẩm");
