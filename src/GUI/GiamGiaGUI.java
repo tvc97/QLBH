@@ -348,31 +348,77 @@ public class GiamGiaGUI extends javax.swing.JFrame {
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
         try {
-            GiamGiaDTO ggd = new GiamGiaDTO();
-            ggd.setMaGiamGia(txtMaGiamGia.getText());
-            ggd.setMucGiam(Integer.parseInt(txtMucGiam.getText()));
-            ggd.setGhiChu(txtGhiChu.getText());
-            ggd.setHanDung(txtHanDung.getText());
-            ggb.Update(ggd);
-            ds.setValueAt(txtMaGiamGia.getText(), cr, 0);
-            ds.setValueAt(txtMucGiam.getText(), cr, 1);
-            ds.setValueAt(txtGhiChu.getText(), cr, 2);
-            ds.setValueAt(txtHanDung.getText(), cr, 3);
-            TableGiamGia.setModel(ds);
+            ArrayList<NhanVienDTO> ar = null;
+            if(txtTaiKhoan.getText().equals(null) || txtTaiKhoan.getText()=="")
+            {
+                JOptionPane.showMessageDialog(null,"Không thể để username trống");
+                return;
+            }
+            DangNhapBUS dnb = new DangNhapBUS();
+            try {
+                ar = dnb.getDangNhap("taikhoan="+"'"+txtTaiKhoan.getText()+"'");
+                for(int i=0; i<ar.size(); i++)
+                {
+                    NhanVienDTO nvd = new NhanVienDTO();
+                    nvd = ar.get(i);
+                    String md5MatKhau = Sercurity.MD5(txtMatKhau.getText());
+                    if(nvd.getMatKhau().equals(md5MatKhau))
+                    {
+                        if(nvd.getRole().equals("admin"))
+                        {
+                            GiamGiaDTO ggd = new GiamGiaDTO();
+                            ggd.setMaGiamGia(txtMaGiamGia.getText());
+                            ggd.setMucGiam(Integer.parseInt(txtMucGiam.getText()));
+                            ggd.setGhiChu(txtGhiChu.getText());
+                            ggd.setHanDung(txtHanDung.getText());
+                            ggb.Update(ggd);
+                            ds.setValueAt(txtMaGiamGia.getText(), cr, 0);
+                            ds.setValueAt(txtMucGiam.getText(), cr, 1);
+                            ds.setValueAt(txtGhiChu.getText(), cr, 2);
+                            ds.setValueAt(txtHanDung.getText(), cr, 3);
+                            TableGiamGia.setModel(ds);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void btnXoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseClicked
         try {
-            GiamGiaDTO ggd = new GiamGiaDTO();
-            ggd.setMaGiamGia(txtMaGiamGia.getText());
-            ggd.setMucGiam(Integer.parseInt(txtMucGiam.getText()));
-            ggd.setGhiChu(txtGhiChu.getText());
-            ggd.setHanDung(txtHanDung.getText());
-            ggb.Delete(ggd);
-            ds.removeRow(cr);
-            TableGiamGia.setModel(ds);
+            ArrayList<NhanVienDTO> ar = null;
+            if(txtTaiKhoan.getText().equals(null) || txtTaiKhoan.getText()=="")
+            {
+                JOptionPane.showMessageDialog(null,"Không thể để username trống");
+                return;
+            }
+            DangNhapBUS dnb = new DangNhapBUS();
+            try {
+                ar = dnb.getDangNhap("taikhoan="+"'"+txtTaiKhoan.getText()+"'");
+                for(int i=0; i<ar.size(); i++)
+                {
+                    NhanVienDTO nvd = new NhanVienDTO();
+                    nvd = ar.get(i);
+                    String md5MatKhau = Sercurity.MD5(txtMatKhau.getText());
+                    if(nvd.getMatKhau().equals(md5MatKhau))
+                    {
+                        if(nvd.getRole().equals("admin"))
+                        {
+                            GiamGiaDTO ggd = new GiamGiaDTO();
+                            ggd.setMaGiamGia(txtMaGiamGia.getText());
+                            ggd.setMucGiam(Integer.parseInt(txtMucGiam.getText()));
+                            ggd.setGhiChu(txtGhiChu.getText());
+                            ggd.setHanDung(txtHanDung.getText());
+                            ggb.Delete(ggd);
+                            ds.removeRow(cr);
+                            TableGiamGia.setModel(ds);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnXoaMouseClicked

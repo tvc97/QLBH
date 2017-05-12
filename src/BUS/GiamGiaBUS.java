@@ -64,7 +64,7 @@ public class GiamGiaBUS {
         hm.put("MucGiam", gg.getMucGiam());
         hm.put("GhiChu", gg.getGhiChu());
         hm.put("HanDung", gg.getHanDung());
-        this.connect.Update("giamgia",hm,"MaGiamGia="+gg.getMaGiamGia());
+        this.connect.Update("giamgia",hm,"MaGiamGia="+"'"+gg.getMaGiamGia()+"'");
     }
     public void Updates(ArrayList<GiamGiaDTO> ar) throws Exception{
         for(GiamGiaDTO gg: ar){
@@ -72,7 +72,7 @@ public class GiamGiaBUS {
         }
     }
     public void Delete(GiamGiaDTO gg) throws Exception{
-        this.connect.Delete("giamgia","MaGiamGia="+gg.getMaGiamGia());
+        this.connect.Delete("giamgia","MaGiamGia="+"'"+gg.getMaGiamGia()+"'");
     }
     public void Deletes(ArrayList<GiamGiaDTO> ar) throws Exception{
         for(GiamGiaDTO gg: ar){
