@@ -83,6 +83,7 @@ public class MYSQLUnit {
         qry= qry.delete(qry.length()-1, qry.length());
         this.addCondition(qry, Condition);
         qry.append(";");
+        System.out.println(qry);
         return this.connect.ExcuteUpdate(qry.toString())>0;
     }
     public Boolean Delete(String TableName,String Condition) throws Exception{

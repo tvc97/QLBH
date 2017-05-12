@@ -5,11 +5,13 @@
  */
 package GUI;
 
+import BUS.CtNhaCungCapBUS;
 import BUS.CtNhapHangBUS;
 import BUS.NhaCungCapBUS;
 import BUS.NhanVienBUS;
 import BUS.NhapHangBUS;
 import BUS.SanPhamBUS;
+import DTO.CtNhaCungCapDTO;
 import DTO.CtNhapHangDTO;
 import DTO.NhaCungCapDTO;
 import DTO.NhanVienDTO;
@@ -36,6 +38,7 @@ public class NhapHangGUI extends javax.swing.JFrame {
     private NhanVienBUS nvb = new NhanVienBUS();
     private SanPhamBUS spb = new SanPhamBUS();
     private CtNhapHangBUS ctnhb = new CtNhapHangBUS();
+    private CtNhaCungCapBUS ctnccb = new CtNhaCungCapBUS();
     private int cr;
     private int cr2;
     private int cr3;
@@ -670,6 +673,10 @@ public class NhapHangGUI extends javax.swing.JFrame {
         ds5.addRow(row);
         TableChiTietNhapHang.setModel(ds5);
         
+        CtNhaCungCapDTO ctnccd = new CtNhaCungCapDTO();
+        ctnccd.setMaNCC(txtMaNhaCungCap.getText());
+        ctnccd.setMaSanPham(txtMaSanPham.getText());
+        ctnccb.Insert(ctnccd);
         
         int tong=0;
         ArrayList<CtNhapHangDTO> arctnhd = null;
@@ -745,6 +752,8 @@ public class NhapHangGUI extends javax.swing.JFrame {
     private void btnSuaChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaChiTietMouseClicked
         try {
             int soluongtruoc = 0;
+            String MaSPTruoc = "";
+            MaSPTruoc = ds5.getValueAt(cr5, 1).toString();
             CtNhapHangDTO ctnhd = new CtNhapHangDTO();
             ArrayList<CtNhapHangDTO> arrayctnh = null;
             try {
@@ -762,12 +771,13 @@ public class NhapHangGUI extends javax.swing.JFrame {
             }
             
             
+            
             ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
             ctnhd.setMaSanPham(txtMaSanPham.getText());
             ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
             ctnhd.setDonGia(Integer.parseInt(txtDonGia.getText()));
             ctnhd.setThanhTien(Integer.parseInt(txtDonGia.getText())*Integer.parseInt(txtSoLuong.getText()));        
-            ctnhb.Update(ctnhd);
+            ctnhb.UpdateMaSP(ctnhd,MaSPTruoc);
             ds5.setValueAt(txtMaPhieuNhapHang.getText(), cr5, 0);
             ds5.setValueAt(txtMaSanPham.getText(), cr5, 1);
             ds5.setValueAt(txtSoLuong.getText(), cr5, 2);

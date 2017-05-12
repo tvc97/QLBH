@@ -72,6 +72,17 @@ public class CtNhapHangBUS {
         this.connect.Update("ctphieunhaphang", hm, "MaPNH = " + "'" + ctnh.getMaPNH()+ "' AND MaSanPham = "
                             + "'" + ctnh.getMaSanPham() + "'");
     }
+    public void UpdateMaSP(CtNhapHangDTO ctnh,String DK) throws Exception
+    {
+        HashMap<String, Object> hm = new HashMap<String, Object>();
+        hm.put("MaPNH", ctnh.getMaPNH());
+        hm.put("MaSanPham", ctnh.getMaSanPham());
+        hm.put("SoLuong", ctnh.getSoLuong());
+        hm.put("DonGia", ctnh.getDonGia());
+        hm.put("ThanhTien", ctnh.getThanhTien());
+        this.connect.Update("ctphieunhaphang", hm, "MaPNH = " + "'" + ctnh.getMaPNH()+ "' AND MaSanPham = "
+                            + "'" + DK + "'");
+    }
     public void Updates(ArrayList<CtNhapHangDTO> ctnh) throws Exception{
         for(CtNhapHangDTO nh:ctnh ){
             this.Update(nh);
