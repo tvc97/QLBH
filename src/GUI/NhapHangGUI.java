@@ -317,6 +317,11 @@ public class NhapHangGUI extends javax.swing.JFrame {
         });
 
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         btnHienThi.setText("Hiển thị");
         btnHienThi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -709,11 +714,14 @@ public class NhapHangGUI extends javax.swing.JFrame {
                     tam = spd.getSoLuongCo()+soluong;
                     spd.setSoLuongCo(spd.getSoLuongCo()+soluong);
                     spb.UpdateGia(spd);
+                    ds4.setValueAt(tam, cr4, 3);
+                    TableSanPham.setModel(ds4);
                     break;
                 }
             }
         } catch (Exception e) {
         }
+        refresh();
     }//GEN-LAST:event_btnThemChiTietMouseClicked
 
     private void btnSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaMouseClicked
@@ -731,11 +739,29 @@ public class NhapHangGUI extends javax.swing.JFrame {
             TableNhapHang.setModel(ds);
         } catch (Exception e) {
         }
+        refresh();
     }//GEN-LAST:event_btnSuaMouseClicked
 
     private void btnSuaChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaChiTietMouseClicked
         try {
+            int soluongtruoc = 0;
             CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+            ArrayList<CtNhapHangDTO> arrayctnh = null;
+            try {
+                arrayctnh = ctnhb.getCtNhapHang();
+                for(int i=0; i<arrayctnh.size(); i++)
+                {
+                    ctnhd = arrayctnh.get(i);
+                    if(ctnhd.getMaPNH().equals(txtMaPhieuNhapHang.getText()) && ctnhd.getMaSanPham().equals(txtMaSanPham.getText()))
+                    {
+                        soluongtruoc = ctnhd.getSoLuong();
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+            }
+            
+            
             ctnhd.setMaPNH(txtMaPhieuNhapHang.getText());
             ctnhd.setMaSanPham(txtMaSanPham.getText());
             ctnhd.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
@@ -772,9 +798,35 @@ public class NhapHangGUI extends javax.swing.JFrame {
             ds.setValueAt(txtNgayLap.getText(), cr, 3);
             ds.setValueAt(tong, cr, 4);
             TableNhapHang.setModel(ds);
+            
+            //soluongtruoc ở hàng đầu
+            int soluongsau=Integer.parseInt(txtSoLuong.getText());
+            int soluong;
+            soluong = soluongsau - soluongtruoc;
+            SanPhamDTO spd = new SanPhamDTO();
+            ArrayList<SanPhamDTO> arspd = null;
+            try {
+                arspd = spb.getSanPham();
+                for(int i=0; i<arspd.size();i++)
+                {
+                    spd = arspd.get(i);
+                    if(spd.getMaSP().equals(txtMaSanPham.getText()))
+                    {
+                        int tam;
+                        tam = spd.getSoLuongCo()+soluong;
+                        spd.setSoLuongCo(spd.getSoLuongCo()+soluong);
+                        spb.UpdateGia(spd);
+                        ds4.setValueAt(tam, cr4, 3);
+                        TableSanPham.setModel(ds4);
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+            }
         }
         catch (Exception e){
         }
+        refresh();
     }//GEN-LAST:event_btnSuaChiTietMouseClicked
 
     private void TableChiTietNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableChiTietNhapHangMouseClicked
@@ -797,6 +849,7 @@ public class NhapHangGUI extends javax.swing.JFrame {
             TableNhapHang.setModel(ds);
         } catch (Exception e) {
         }
+        refresh();
     }//GEN-LAST:event_btnXoaMouseClicked
 
     private void btnXoaChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaChiTietMouseClicked
@@ -841,8 +894,140 @@ public class NhapHangGUI extends javax.swing.JFrame {
             TableNhapHang.setModel(ds);
         } catch (Exception e) {
         }
+        refresh();
     }//GEN-LAST:event_btnXoaChiTietMouseClicked
 
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnThoatActionPerformed
+    public void refresh()
+    {
+        Vector header = new Vector();
+        header.add("Mã phiếu nhập hàng");
+        header.add("Mã nhà cung cấp");
+        header.add("Mã nhân viên");
+        header.add("Ngày lập");
+        header.add("Tổng tiền");
+        DefaultTableModel table = new DefaultTableModel(header,0);
+        ArrayList<NhapHangDTO> ar = null;
+        try {
+            ar = nhb.getNhapHang();
+            NhapHangDTO nhd = new NhapHangDTO();
+            for(int i=0; i<ar.size(); i++)
+            {
+                Vector row = new Vector();
+                nhd = ar.get(i);
+                row.add(nhd.getMaPNH());
+                row.add(nhd.getMaNCC());
+                row.add(nhd.getMaNV());
+                row.add(nhd.getNgayLap());
+                row.add(nhd.getTongTien());
+                table.addRow(row);
+            }
+            ds = table;
+            TableNhapHang.setModel(table);
+        }
+        catch (Exception e){  
+        }
+        Vector header2 = new Vector();
+        header2.add("Mã nhà cung cấp");
+        header2.add("Tên nhà cung cấp");
+        header2.add("Địa chỉ");
+        header2.add("Email");
+        header2.add("Số điện thoại");
+        DefaultTableModel table2 = new DefaultTableModel(header2, 0);
+        ArrayList<NhaCungCapDTO> ar2 = null;
+        try {
+            ar2 = nccb.getNhaCungCap();
+            NhaCungCapDTO nccd = new NhaCungCapDTO();
+            for(int i=0; i< ar2.size(); i++)
+            {
+                Vector row = new Vector();
+                nccd = ar2.get(i);
+                row.add(nccd.getMaNCC());
+                row.add(nccd.getTenNCC());
+                row.add(nccd.getDiaChi());
+                row.add(nccd.getEmail());
+                row.add(nccd.getSdt());
+                table2.addRow(row);
+            }
+            ds2 = table2;
+            TableNhaCungCap.setModel(table2);
+        }catch (Exception e) {
+        }
+        Vector header3 = new Vector();
+        header3.add("Mã nhân viên");
+        header3.add("Tên nhân viên");
+        header3.add("Ngày sinh");
+        DefaultTableModel table3 = new DefaultTableModel(header3, 0);
+        ArrayList<NhanVienDTO> ar3 = null;
+        try {
+            ar3 = nvb.getNhanVien();
+            NhanVienDTO nvd = new NhanVienDTO();
+            for(int i=0; i< ar3.size(); i++)
+            {
+                Vector row = new Vector();
+                nvd = ar3.get(i);
+                row.add(nvd.getMaNV());
+                row.add(nvd.getTenNV());
+                row.add(nvd.getNgaySinh());
+                table3.addRow(row);
+            }
+            ds3 = table3;
+            TableNhanVien.setModel(table3);
+        }catch (Exception e) {
+        }
+        Vector header4 = new Vector();
+        header4.add("Mã sản phẩm");
+        header4.add("Tên sản phẩm");
+        header4.add("Đơn giá");
+        header4.add("Số lượng");
+        DefaultTableModel table4 = new DefaultTableModel(header4, 0);
+        ArrayList<SanPhamDTO> ar4 = null;
+        try {
+            ar4 = spb.getSanPham();
+            SanPhamDTO spd = new SanPhamDTO();
+            for(int i=0; i< ar4.size(); i++)
+            {
+                Vector row = new Vector();
+                spd = ar4.get(i);
+                row.add(spd.getMaSP());
+                row.add(spd.getTenSP());
+                row.add(spd.getDonGia());
+                row.add(spd.getSoLuongCo());
+                table4.addRow(row);
+            }
+            ds4 = table4;
+            TableSanPham.setModel(table4);
+        }catch (Exception e) {
+        }
+        Vector header5 = new Vector();
+        header5.add("Mã PNH");
+        header5.add("Mã SP");
+        header5.add("Số lượng");
+        header5.add("Đơn giá");
+        header5.add("Thành tiền");
+        DefaultTableModel table5 = new DefaultTableModel(header5, 0);
+        ArrayList<CtNhapHangDTO> ar5 = null;
+        try {
+            ar5 = ctnhb.getCtNhapHang();
+            CtNhapHangDTO ctnhd = new CtNhapHangDTO();
+            for(int i=0; i< ar5.size(); i++)
+            {
+                Vector row = new Vector();
+                ctnhd = ar5.get(i);
+                row.add(ctnhd.getMaPNH());
+                row.add(ctnhd.getMaSanPham());
+                row.add(ctnhd.getSoLuong());
+                row.add(ctnhd.getDonGia());
+                row.add(ctnhd.getThanhTien());
+                table5.addRow(row);
+            }
+            ds5 = table5;
+            TableChiTietNhapHang.setModel(table5);
+        }catch (Exception e) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
